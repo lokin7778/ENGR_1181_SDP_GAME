@@ -66,5 +66,9 @@ clc
         
     end
 
+<<<<<<< HEAD
 
 
+=======
+    % FIRST GIT BRANCH COMMENT
+>>>>>>> 860652ef9ac02692128143a9b8b49153fd7aab51
