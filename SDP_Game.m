@@ -28,7 +28,6 @@ clc
     home_screen_wordsR6 = ['        2. Infinite free play        '];
     home_screen_wordsR7 = ['                                     '];
     home_screen_wordsR8 = ['         Please click 1 or 2         '];
-    length(home_screen_wordsR9)
     
     % Creates a vector of the different text-holder vecotrs above
     home_screen_scene = [home_screen_wordsR1; home_screen_wordsR2; ...
