@@ -10,7 +10,7 @@ clc
     BGC = [217, 135, 41]; % Background color, RBG values. ()
     
     % Creats a simpleGameEngine object with the parameters sSize, zFactor, BCG,
-    % and the retro_pack.png
+    % and the custom.png
     home_object = simpleGameEngine('custom.png', sSize, sSize, zFactor, BGC);
     
     
