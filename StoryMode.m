@@ -26,7 +26,17 @@
                          '                                                    ';
                          '                                                    '];
     
-    SDP_obj = simpleGameEngine('custom.png',16,16,4,[217, 135, 41]);
-    drawScene(SDP_obj,instructions_text);
+       sSize = 16; % Sprite size based on the actual size of the sprite sheet.
+      
+       zFactor = 1; % Zoom factor, based on how big you want to the displayed
+       % images to be.
+      
+       BGC = [217, 135, 41]; % Background color, RBG values. ()
+      
+       % Creats a simpleGameEngine object with the parameters sSize, zFactor, BCG,
+       % and the custom.png
+       home_object = simpleGameEngine('custom.png', sSize, sSize, zFactor, BGC);
+    
+       drawScene(home_object, instructions_text )
 
 
