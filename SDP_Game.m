@@ -50,7 +50,8 @@ clc
         if (isequal(home_screen_keyboard_input,'1'))
             
             % STORY MODE
-            ...
+            story_instructions = StoryMode(home_screen_keyboard_input)
+            drawScene(home_object, story_instructions);
             flag = false;
 
         elseif (isequal(home_screen_keyboard_input,'2'))
