@@ -1,20 +1,29 @@
-function [correct, false1, false2, false3] = ranQuestion (startNum, endNum)
-          %question_screen
-correct = randi([startNum, endNum]);
+function [correctOption, false1Option, false2Option, false3Option] = ranQuestion (startNum, endNum)
+          
 
-false1 = randi([startNum, endNum]);
-while correct == false1
-    false1 = randi([startNum, endNum]);
-end 
+hiragana_list= ["あ", "い", "う", "え", "お", "か", "き", "く", "け", "こ"];
+          
+correctNum = randi([startNum, endNum]);
+correctOption = hiragana_list(correctNum)
 
-false2 = randi([startNum, endNum]);
-while false1 == false2 || correct == false2
-    false2 = randi([startNum, endNum]);
-end 
 
-false3 = randi([startNum, endNum]);
-while false2 == false3 || false1 == false3 || correct == false3
-    false3 = randi([startNum, endNum]);
+false1Num = randi([startNum, endNum]);
+while correctNum == false1Num
+    false1Num = randi([startNum, endNum]);
 end 
+false1Option = hiragana_list(false1Num)
+
+
+false2Num = randi([startNum, endNum]);
+while false1Num == false2Num || correctNum == false2Num
+    false2Num = randi([startNum, endNum]);
+end 
+false2Option = hiragana_list(false2Num)
+
+false3Num = randi([startNum, endNum]);
+while false2Num == false3Num || false1Num == false3Num || correctNum == false3Num
+    false3Num = randi([startNum, endNum]);
+end 
+false3Option = hiragana_list(false3Num)
 
 end
