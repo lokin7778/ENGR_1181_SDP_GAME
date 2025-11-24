@@ -56,6 +56,7 @@ clc
         elseif (isequal(home_screen_keyboard_input,'2'))
             
             % INFINITE HIRAGANA MODE
+            [output1, output2, output3, output4] = ranQuestion(1,100)
             ...
             flag = false;
 
