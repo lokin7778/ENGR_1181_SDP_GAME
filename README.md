@@ -6,4 +6,6 @@
 
 2. You can play this game in two modes, either to story mode, which will introduce to a story and then ask you questions based on that or an infinite Hiragana mode, which is basically just questions till the user decides to quit externally.
 
+# Functionality
 
+1. Created the ranQuestion function. It takes in a starting number and an ending number. It will use these to generate 4 eunique random numbers that will be used as the choices for the random questions. 
