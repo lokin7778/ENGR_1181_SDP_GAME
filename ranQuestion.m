@@ -1,7 +1,6 @@
 function [correctOption, false1Option, false2Option, false3Option] = ranQuestion (startNum, endNum)
-          
 
-hiragana_list= ["あ", "い", "う", "え", "お", "か", "き", "く", "け", "こ"];
+hiragana_list = ["あ", "い", "う", "え", "お", "か", "き", "く", "け", "こ"];
 
 % english equivalents for the above given hiragana characters in order
 % english_list = ["a", "i", "u", "e", "o", "ka", "ki", "ku", "ke", "ko"];
