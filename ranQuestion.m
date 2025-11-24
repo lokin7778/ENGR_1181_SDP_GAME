@@ -2,6 +2,9 @@ function [correctOption, false1Option, false2Option, false3Option] = ranQuestion
           
 
 hiragana_list= ["あ", "い", "う", "え", "お", "か", "き", "く", "け", "こ"];
+
+% english equivalents for the above given hiragana characters in order
+% english_list = ["a", "i", "u", "e", "o", "ka", "ki", "ku", "ke", "ko"];
           
 correctNum = randi([startNum, endNum]);
 correctOption = hiragana_list(correctNum)
