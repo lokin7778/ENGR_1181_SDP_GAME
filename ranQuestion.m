@@ -1,31 +1,45 @@
 function [correctOption, false1Option, false2Option, false3Option] = ranQuestion (startNum, endNum)
 
     hiragana_list = ["あ", "い", "う", "え", "お", "か", "き", "く", "け", "こ"];
-    
     % english equivalents for the above given hiragana characters in order
     % english_list = ["a", "i", "u", "e", "o", "ka", "ki", "ku", "ke", "ko"];
-              
+          
+    % genorates a random number that will be used as the index of the
+    % correct answer
     correctNum = randi([startNum, endNum]);
     correctOption = hiragana_list(correctNum);
     
-    
+    % genorates a random number that will be used as the index of the
+    % first incorrect answer
     false1Num = randi([startNum, endNum]);
+
+    % will keep genorating until it generates a new number 
     while correctNum == false1Num
-        false1Num = randi([startNum, endNum]);
-    end 
+       false1Num = randi([startNum, endNum]);
+    end
     false1Option = hiragana_list(false1Num);
     
-    
+    % genorates a random number that will be used as the index of the
+    % second incorrect answer
     false2Num = randi([startNum, endNum]);
+
+    % will keep genorating until it generates a new number 
     while false1Num == false2Num || correctNum == false2Num
-        false2Num = randi([startNum, endNum]);
-    end 
+       false2Num = randi([startNum, endNum]);
+    end
     false2Option = hiragana_list(false2Num);
     
+    % genorates a random number that will be used as the index of the
+    % third incorrect answer
     false3Num = randi([startNum, endNum]);
+
+    % will keep genorating until it generates a new number 
     while false2Num == false3Num || false1Num == false3Num || correctNum == false3Num
-        false3Num = randi([startNum, endNum]);
-    end 
+       false3Num = randi([startNum, endNum]);
+    end
     false3Option = hiragana_list(false3Num);
 
+
 end
+
+
