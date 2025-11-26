@@ -12,8 +12,6 @@ function [correctOption, false1Option, false2Option, false3Option] = ranQuestion
     % genorates a random number that will be used as the index of the
     % first incorrect answer
     false1Num = randi([startNum, endNum]);
-
-    % will keep genorating until it generates a new number 
     while correctNum == false1Num
        false1Num = randi([startNum, endNum]);
     end
@@ -22,8 +20,6 @@ function [correctOption, false1Option, false2Option, false3Option] = ranQuestion
     % genorates a random number that will be used as the index of the
     % second incorrect answer
     false2Num = randi([startNum, endNum]);
-
-    % will keep genorating until it generates a new number 
     while false1Num == false2Num || correctNum == false2Num
        false2Num = randi([startNum, endNum]);
     end
@@ -32,8 +28,6 @@ function [correctOption, false1Option, false2Option, false3Option] = ranQuestion
     % genorates a random number that will be used as the index of the
     % third incorrect answer
     false3Num = randi([startNum, endNum]);
-
-    % will keep genorating until it generates a new number 
     while false2Num == false3Num || false1Num == false3Num || correctNum == false3Num
        false3Num = randi([startNum, endNum]);
     end
