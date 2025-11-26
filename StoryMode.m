@@ -40,8 +40,34 @@ function story_scene = StoryMode(level)
 
     elseif level==1
         
-        msgbox('Click success')
+        % Main Story mode version of the game
+        
+        border_outline_topleft = 130;
+        border_outline_topright = 132;
+        border_outline_bottomleft = 195;
+        border_outline_bottomright = 197;
+        border_outline_left = 163;
+        border_outline_right = 165;
 
+        story_scene_top = [border_outline_topleft,131,131,131,131,131,131,131,131,131,131,131,131,131,131,131,131,131,...
+            131,131,131,131,131,131,131,131,131,131,131,131,131,border_outline_topright];
+        
+        story_scene_middle_temp = [border_outline_left, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, border_outline_right];
+        story_scene_middle_temp1 = [border_outline_left, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, border_outline_right];
+        story_scene_middle_temp2 = [border_outline_left, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, border_outline_right];
+        story_scene_middle_temp3 = [border_outline_left, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, border_outline_right];
+        story_scene_middle_temp4 = [border_outline_left, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, border_outline_right];
+        story_scene_middle_temp5 = [border_outline_left, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, border_outline_right];
+        story_scene_middle_temp6 = [border_outline_left, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, border_outline_right];
+        story_scene_middle_temp7 = [border_outline_left, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, border_outline_right];
+        story_scene_middle_temp8 = [border_outline_left, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, border_outline_right];
+        story_scene_middle_temp9 = [border_outline_left, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, border_outline_right];
+
+        
+        story_scene = [story_scene_top;story_scene_middle_temp;story_scene_middle_temp1;story_scene_middle_temp2;story_scene_middle_temp3;story_scene_middle_temp4;...
+            story_scene_middle_temp5; story_scene_middle_temp6; story_scene_middle_temp7; story_scene_middle_temp8; story_scene_middle_temp9];
+        
     end
 
 end 
+

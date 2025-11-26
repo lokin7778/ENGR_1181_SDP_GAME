@@ -70,7 +70,8 @@ clc
             % are within that treshold.
             if (r_instructions==25 && ( c_instructions>=22 && c_instructions<=25))
                 level = level + 1;
-                StoryMode(level); % calls the function again 
+                story_introduction = StoryMode(level); % calls the function again
+                drawScene(home_object, story_introduction);
             end
 
             flag = false;
