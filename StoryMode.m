@@ -28,9 +28,20 @@ function story_scene = StoryMode(level)
                              ' 4. This process will repeat until you have been  ';
                              '    taught 10 characters of basic Hiragana.       ';
                              '                                                  ';
+                             '           CLICK ON PLAY WHEN READY               ';
+                             '                                                  ';
+                             '                     PLAY                         ';
                              '                                                  '];
         % sets the story scene (story_scene) to the instructions text. 
         story_scene = instructions_text;
+
+    % if the mouse input matches the given row and column, go to level 1,
+    % the main story mode game.
+
+    elseif level==1
+        
+        msgbox('Click success')
+
     end
 
 end 
