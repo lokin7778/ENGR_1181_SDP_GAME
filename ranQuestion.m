@@ -41,5 +41,3 @@ function [correctOption, false1Option, false2Option, false3Option] = ranQuestion
 
 
 end
-
-
