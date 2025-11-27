@@ -66,7 +66,6 @@ function story_scene = StoryMode(level)
         story_scene_middle_temp10 = [border_outline_bottomleft, 195, 195, 195, 195, 195, 195, 195, 195, 195, 195, 195, 195, 195, 195, 195, 195, 195, 195, 195, 195,...
             195, 195, 195, 195, 195, 195, 195, 195, 195, 195, border_outline_bottomright];
         
-
         
         story_scene = [story_scene_top;story_scene_middle_temp;story_scene_middle_temp1;story_scene_middle_temp2;story_scene_middle_temp3;story_scene_middle_temp4;...
             story_scene_middle_temp5; story_scene_middle_temp6; story_scene_middle_temp7; story_scene_middle_temp8; story_scene_middle_temp9; story_scene_middle_temp10];
