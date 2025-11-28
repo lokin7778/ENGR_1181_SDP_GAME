@@ -91,4 +91,8 @@ clc
             pause(3) % pauses in the msgbox for 3 seconds for the user to read the error.
         end
         
+<<<<<<< HEAD
     end
+=======
+    end
+>>>>>>> feature/Story-Mode

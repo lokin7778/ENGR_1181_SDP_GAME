@@ -73,4 +73,7 @@ function story_scene = StoryMode(level)
     end
 
 end 
+<<<<<<< HEAD
 
+=======
+>>>>>>> feature/Story-Mode
