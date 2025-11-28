@@ -51,34 +51,144 @@ clc
         % check for equalities and enter into the respective functions. 
         if (isequal(home_screen_keyboard_input,'1'))
             
-            % STORY MODE
-
-            % used to count the level. The first is level 0 which is the
-            % instructions. 
-            level = 0;
-
-            % creates a scene equal to the output of the StoryMode.m
-            % function. The input is the level. It will choose which scene
-            % to output based on the level. 
-            story_instructions = StoryMode(level);
-
-            % draws the scene from the StoryMode.m function
-            drawScene(home_object, story_instructions)
-
-            % gets mouse input which determines when the user has to play
-            [r_instructions, c_instructions] = getMouseInput(home_object)
-
-            % checks what is the mouse input and branches if the row and column
-            % are within that treshold.
-            if (r_instructions==25 && ( c_instructions>=22 && c_instructions<=25))
-                level = level + 1;
-                story_introduction = StoryMode(level); % calls the function again
-                drawScene(home_object, story_introduction);
+        % Level 0: Instructions
+        % Level 1, 3, 5, 7, 9: Lessons
+        % Level 2, 4, 6, 8, 10: Quizzes
+        % Level 11: Final Map
+        
+        level = 0;
+        
+        % Loop until we reach the map (Level 11)
+        while level <= 11
+            
+            % 1. Load the scene text/matrix from StoryMode.m
+            current_scene = StoryMode(level);
+            
+            % 2. Draw the background scene (text and brackets)
+            drawScene(home_object, current_scene);
+            
+            % 3. OVERLAY JAPANESE TEXT
+            % We must use the text() function because custom.png has no Hiragana.
+            % We store the text objects in 'hText' so we can delete them later.
+            hText = []; 
+            
+            % Define standard font style
+            fontStyle = {'Color', 'white', 'FontSize', 20, 'FontWeight', 'bold', 'FontName', 'MS UI Gothic'};
+            
+            % Coordinates are guessed: (X, Y). X ~ column*16, Y ~ row*16.
+            % Adjust these numbers if the text doesn't align perfectly with the [ ].
+            
+            if level == 1 % Lesson 1: A and I
+                h1 = text(50, 65, 'あ', fontStyle{:}); % Matches [ ] for A with the proper row and column
+                h2 = text(50, 175, 'い', fontStyle{:}); % Matches [ ] for I with the proper row and column
+                hText = [h1, h2];
                 
+            elseif level == 2 % Quiz 1 (Answer: A)
+                h1 = text(260, 130, 'あ', fontStyle{:}); % Option 1
+                h2 = text(260, 160, 'い', fontStyle{:}); % Option 2
+                hText = [h1, h2];
+                
+            elseif level == 3 % Lesson 2: U and E
+                h1 = text(50, 65, 'う', fontStyle{:});
+                h2 = text(50, 175, 'え', fontStyle{:});
+                hText = [h1, h2];
+                
+            elseif level == 4 % Quiz 2 (Answer: E)
+                h1 = text(260, 130, 'う', fontStyle{:});
+                h2 = text(260, 160, 'え', fontStyle{:});
+                hText = [h1, h2];
+                
+            elseif level == 5 % Lesson 3: O and KA
+                h1 = text(50, 65, 'お', fontStyle{:});
+                h2 = text(50, 175, 'か', fontStyle{:});
+                hText = [h1, h2];
+                
+            elseif level == 6 % Quiz 3 (Answer: KA)
+                h1 = text(260, 130, 'お', fontStyle{:});
+                h2 = text(260, 160, 'か', fontStyle{:});
+                hText = [h1, h2];
+                
+            elseif level == 7 % Lesson 4: KI and KU
+                h1 = text(50, 65, 'き', fontStyle{:});
+                h2 = text(50, 175, 'く', fontStyle{:});
+                hText = [h1, h2];
+                
+            elseif level == 8 % Quiz 4 (Answer: KU)
+                h1 = text(260, 130, 'き', fontStyle{:});
+                h2 = text(260, 160, 'く', fontStyle{:});
+                hText = [h1, h2];
+                
+            elseif level == 9 % Lesson 5: KE and KO
+                h1 = text(50, 65, 'け', fontStyle{:});
+                h2 = text(50, 175, 'こ', fontStyle{:});
+                hText = [h1, h2];
+                
+            elseif level == 10 % Quiz 5 (Answer: KO)
+                h1 = text(260, 130, 'け', fontStyle{:});
+                h2 = text(260, 160, 'こ', fontStyle{:});
+                hText = [h1, h2];
             end
-
-            flag = false;
-
+            
+            % 4. HANDLE USER INPUT
+            
+            if level == 11
+                % MAP MODE: Game continues here (add your map movement logic later)
+                break; % Exit the story loop to start map gameplay
+                
+            elseif mod(level, 2) == 1 || level == 0
+                % ODD LEVELS (Lessons) & LEVEL 0 (Instructions)
+                % Just wait for a mouse click to proceed
+                getMouseInput(home_object);
+                
+                % Move to next level
+                level = level + 1;
+                
+            else
+                % EVEN LEVELS (Quizzes)
+                % Wait for Keyboard Input (1 or 2)
+                validKey = false;
+                while ~validKey
+                    key = getKeyboardInput(home_object);
+                    
+                    if key == '1' || key == '2'
+                        validKey = true;
+                        
+                        % --- DAMAGE LOGIC ---
+                        % Define correct answers for each quiz level
+                        % Quiz 1 (Lvl 2): A (Opt 1)
+                        % Quiz 2 (Lvl 4): E (Opt 2)
+                        % Quiz 3 (Lvl 6): KA (Opt 2)
+                        % Quiz 4 (Lvl 8): KU (Opt 2)
+                        % Quiz 5 (Lvl 10): KO (Opt 2)
+                        
+                        isCorrect = false;
+                        if level == 2 && key == '1', isCorrect = true; end
+                        if level == 4 && key == '2', isCorrect = true; end
+                        if level == 6 && key == '2', isCorrect = true; end
+                        if level == 8 && key == '2', isCorrect = true; end
+                        if level == 10 && key == '2', isCorrect = true; end
+                        
+                        if isCorrect
+                            msgbox('Correct! The Demon takes damage.');
+                        else
+                            msgbox('Wrong! You take damage.');
+                        end
+                        
+                        % Allow user to read message before moving on
+                        pause(2); 
+                        level = level + 1;
+                    end
+                end
+            end
+            
+            % 5. CLEANUP
+            % Delete the Japanese text so it doesn't stay on screen for the next scene
+            if ~isempty(hText)
+                delete(hText);
+            end
+        end
+        
+        flag = false; % Exit main menu loop
         elseif (isequal(home_screen_keyboard_input,'2'))
             
             % INFINITE HIRAGANA MODE
