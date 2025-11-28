@@ -109,8 +109,13 @@ clc
             % move on when the user clicks play
             [r_INFinstructions, c_INFinstructions] = getMouseInput(home_object);
 
+
+            % variable that will be used to know when to exit the mode
             exit_in_mode = 0; 
 
+            % variable that will keep track of the player's score
+            score = 0;
+            
             while exit_in_mode == 0
     
                 % call the ranQuestion.m function. It takes in a starting
@@ -122,7 +127,11 @@ clc
     
                 
                 if question_type == 1 % multiple choice
-    
+
+                    % variable that will be used to keep track of the
+                    % number of trys.
+                    numTry = 0;
+
                     % creates a vector set to the output options
                     options = {output1, output2, output3, output4};
     
@@ -140,6 +149,7 @@ clc
                     % function. Uses the text function to output the hiragana
                     % and english equivalent. 
                     drawScene(home_object, question)
+                    text(100, 10, num2str(score), 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % score
                     text(320, 25, correct_english, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % english
                     text(50, 75, options(1), 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % 1.
                     text(390, 75, options(2), 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % 2.
@@ -161,12 +171,16 @@ clc
                         % they click the screen. 
                         if r_multiple_choice == 5 && c_multiple_choice >= 1 && c_multiple_choice <= 22
                             userCh = 1;
+                            numTry = numTry + 1; % increase number of trys
                         elseif r_multiple_choice == 5 && c_multiple_choice >= 22 && c_multiple_choice <= 45
                             userCh = 2;
+                            numTry = numTry + 1; % increase number of trys
                         elseif r_multiple_choice == 7 && c_multiple_choice >= 1 && c_multiple_choice <= 22
                             userCh = 3;
+                            numTry = numTry + 1; % increase number of trys
                         elseif r_multiple_choice == 7 && c_multiple_choice >= 22 && c_multiple_choice <= 45
                             userCh = 4;
+                            numTry = numTry + 1; % increase number of trys
                         elseif r_multiple_choice == 1 && c_multiple_choice >= 42 && c_multiple_choice <= 45
                             exit_in_mode = 1; % the user clicked exit
                             break; % exit the while userCh ~= correct_position
@@ -182,6 +196,15 @@ clc
                     % congratulate player for getting it right 
                     if exit_in_mode == 0
                         msgbox('Correct!!!');
+
+                        % increase score by the correct amount depending on
+                        % the amount of trys. 
+                        if numTry == 1
+                            score = score + 1;
+                        else
+                            score = score + .5;
+                        end
+                        
                         pause(2);
                         clf; % clear the figure before generating a new question
                     end
