@@ -109,7 +109,7 @@ function story_scene = StoryMode(level)
                  '            BATTLE 2: THE DEMON STRIKES!          ';
                  '                                                  ';
                  '  The Demon shouts:                               ';
-                 '  "WHICH CHARACTER IS THE EXERCISE BENCH?"        ';
+                 '  "What is the hiragana equivalent of "E" ?"      ';
                  '                                                  ';
                  '                                                  ';
                  '    OPTION 1:        (U)                          ';
@@ -119,7 +119,7 @@ function story_scene = StoryMode(level)
                  '                                                  ';
                  '   (Press 1 or 2 on your keyboard to attack!)     ';
                  '                                                  ';
-                 '                                                  ';
+                 '           Hint - Exercises Benches :)            ';
                  '                                                  ';
                  '                                                  '];
         story_scene = scene;
@@ -152,7 +152,7 @@ function story_scene = StoryMode(level)
                  '            BATTLE 3: THE DEMON STRIKES!          ';
                  '                                                  ';
                  '  The Demon shouts:                               ';
-                 '  "WHICH CHARACTER LOOKS LIKE A KITE?"            ';
+                 '  "What is the Hiragana equivalent of "KA" ?"     ';
                  '                                                  ';
                  '                                                  ';
                  '    OPTION 1:         (O)                         ';
@@ -163,7 +163,7 @@ function story_scene = StoryMode(level)
                  '   (Press 1 or 2 on your keyboard to attack!)     ';
                  '                                                  ';
                  '                                                  ';
-                 '                                                  ';
+                 '            Hint - Kites all around!!             ';
                  '                                                  '];
         story_scene = scene;
 
@@ -195,7 +195,7 @@ function story_scene = StoryMode(level)
                  '            BATTLE 4: THE DEMON STRIKES!          ';
                  '                                                  ';
                  '  The Demon shouts:                               ';
-                 '  "WHICH CHARACTER IS THE KOO-KOO BIRD?"          ';
+                 '  "What is the Hiragana equivalent of "KU" ?"     ';
                  '                                                  ';
                  '                                                  ';
                  '    OPTION 1:         (KI)                        ';
@@ -205,7 +205,7 @@ function story_scene = StoryMode(level)
                  '                                                  ';
                  '   (Press 1 or 2 on your keyboard to attack!)     ';
                  '                                                  ';
-                 '                                                  ';
+                 '        Hint - The bird that koo-koos             ';
                  '                                                  ';
                  '                                                  '];
         story_scene = scene;
@@ -238,7 +238,7 @@ function story_scene = StoryMode(level)
                  '            BATTLE 5: THE FINAL TEST!             ';
                  '                                                  ';
                  '  The Demon shouts:                               ';
-                 '  "WHICH CHARACTER LOOKS LIKE KOBRA SNAKES?"      ';
+                 '  "What is the Hiragana equivalent of "KO" ?"     ';
                  '                                                  ';
                  '                                                  ';
                  '    OPTION 1:         (KE)                        ';
@@ -248,7 +248,7 @@ function story_scene = StoryMode(level)
                  '                                                  ';
                  '   (Press 1 or 2 on your keyboard to attack!)     ';
                  '                                                  ';
-                 '                                                  ';
+                 '            Hint - "K"ing "K"obras                ';
                  '                                                  ';
                  '                                                  '];
         story_scene = scene;
