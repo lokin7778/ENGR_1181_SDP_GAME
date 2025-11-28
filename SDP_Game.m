@@ -58,81 +58,80 @@ clc
         
         level = 0;
         
-        % Loop until we reach the map (Level 11)
-        while level <= 11
+        % Loop until we reach the last level
+        while level <= 10
             
-            % 1. Load the scene text/matrix from StoryMode.m
+            % Load the scene text/matrix from StoryMode.m
             current_scene = StoryMode(level);
             
-            % 2. Draw the background scene (text and brackets)
+            % Draw the background scene (text and brackets)
             drawScene(home_object, current_scene);
             
-            % 3. OVERLAY JAPANESE TEXT
-            % We must use the text() function because custom.png has no Hiragana.
+            % We must use the text() function because custom.png has no
+            % Hiragana characters
             % We store the text objects in 'hText' so we can delete them later.
             hText = []; 
             
             % Define standard font style
-            fontStyle = {'Color', 'white', 'FontSize', 20, 'FontWeight', 'bold', 'FontName', 'MS UI Gothic'};
+            fontStyle = {'FontSize', 16, 'Color',[0.8 0.8 0.8]};
             
             % Coordinates are guessed: (X, Y). X ~ column*16, Y ~ row*16.
-            % Adjust these numbers if the text doesn't align perfectly with the [ ].
             
             if level == 1 % Lesson 1: A and I
-                h1 = text(50, 65, 'あ', fontStyle{:}); % Matches [ ] for A with the proper row and column
-                h2 = text(50, 175, 'い', fontStyle{:}); % Matches [ ] for I with the proper row and column
+                h1 = text(220, 50, 'あ', fontStyle{:}); % Matches for A with the proper row and column
+                h2 = text(220, 150, 'い', fontStyle{:}); % Matches for I with the proper row and column
                 hText = [h1, h2];
                 
             elseif level == 2 % Quiz 1 (Answer: A)
-                h1 = text(260, 130, 'あ', fontStyle{:}); % Option 1
-                h2 = text(260, 160, 'い', fontStyle{:}); % Option 2
+                h1 = text(260, 120, 'あ', fontStyle{:}); % Option 1
+                h2 = text(260, 150, 'い', fontStyle{:}); % Option 2
                 hText = [h1, h2];
                 
             elseif level == 3 % Lesson 2: U and E
-                h1 = text(50, 65, 'う', fontStyle{:});
-                h2 = text(50, 175, 'え', fontStyle{:});
+                h1 = text(220, 50, 'う', fontStyle{:});
+                h2 = text(220, 150, 'え', fontStyle{:});
                 hText = [h1, h2];
                 
             elseif level == 4 % Quiz 2 (Answer: E)
-                h1 = text(260, 130, 'う', fontStyle{:});
-                h2 = text(260, 160, 'え', fontStyle{:});
+                h1 = text(260, 120, 'う', fontStyle{:});
+                h2 = text(260, 150, 'え', fontStyle{:});
                 hText = [h1, h2];
                 
             elseif level == 5 % Lesson 3: O and KA
-                h1 = text(50, 65, 'お', fontStyle{:});
-                h2 = text(50, 175, 'か', fontStyle{:});
+                h1 = text(220, 50, 'お', fontStyle{:});
+                h2 = text(220, 150, 'か', fontStyle{:});
                 hText = [h1, h2];
                 
             elseif level == 6 % Quiz 3 (Answer: KA)
-                h1 = text(260, 130, 'お', fontStyle{:});
-                h2 = text(260, 160, 'か', fontStyle{:});
+                h1 = text(260, 120, 'お', fontStyle{:});
+                h2 = text(260, 150, 'か', fontStyle{:});
                 hText = [h1, h2];
                 
             elseif level == 7 % Lesson 4: KI and KU
-                h1 = text(50, 65, 'き', fontStyle{:});
-                h2 = text(50, 175, 'く', fontStyle{:});
+                h1 = text(220, 50, 'き', fontStyle{:});
+                h2 = text(220, 150, 'く', fontStyle{:});
                 hText = [h1, h2];
                 
             elseif level == 8 % Quiz 4 (Answer: KU)
-                h1 = text(260, 130, 'き', fontStyle{:});
-                h2 = text(260, 160, 'く', fontStyle{:});
+                h1 = text(260, 120, 'き', fontStyle{:});
+                h2 = text(260, 150, 'く', fontStyle{:});
                 hText = [h1, h2];
                 
             elseif level == 9 % Lesson 5: KE and KO
-                h1 = text(50, 65, 'け', fontStyle{:});
-                h2 = text(50, 175, 'こ', fontStyle{:});
+                h1 = text(220, 55, 'け', fontStyle{:});
+                h2 = text(220, 150, 'こ', fontStyle{:});
                 hText = [h1, h2];
                 
             elseif level == 10 % Quiz 5 (Answer: KO)
-                h1 = text(260, 130, 'け', fontStyle{:});
-                h2 = text(260, 160, 'こ', fontStyle{:});
+                h1 = text(260, 120, 'け', fontStyle{:});
+                h2 = text(260, 150, 'こ', fontStyle{:});
                 hText = [h1, h2];
             end
             
             % 4. HANDLE USER INPUT
             
             if level == 11
-                % MAP MODE: Game continues here (add your map movement logic later)
+                
                 break; % Exit the story loop to start map gameplay
                 
             elseif mod(level, 2) == 1 || level == 0
@@ -174,7 +173,7 @@ clc
                             msgbox('Wrong! You take damage.');
                         end
                         
-                        % Allow user to read message before moving on
+                        % Allows user to read message before moving on
                         pause(2); 
                         level = level + 1;
                     end
@@ -189,6 +188,8 @@ clc
         end
         
         flag = false; % Exit main menu loop
+
+
         elseif (isequal(home_screen_keyboard_input,'2'))
             
             % INFINITE HIRAGANA MODE
