@@ -1,8 +1,9 @@
-function [correctOption, false1Option, false2Option, false3Option] = ranQuestion (startNum, endNum)
+function [question_type, question, correctOption, false1Option, false2Option, false3Option, correct_english] = ranQuestion (startNum, endNum)
 
     hiragana_list = ["あ", "い", "う", "え", "お", "か", "き", "く", "け", "こ"];
     % english equivalents for the above given hiragana characters in order
-    % english_list = ["a", "i", "u", "e", "o", "ka", "ki", "ku", "ke", "ko"];
+     english_list = ["a", "i", "u", "e", "o", "ka", "ki", "ku", "ke", "ko"];
+     correct_english = "";
           
     % genorates a random number that will be used as the index of the
     % correct answer
@@ -39,5 +40,34 @@ function [correctOption, false1Option, false2Option, false3Option] = ranQuestion
     end
     false3Option = hiragana_list(false3Num);
 
+                         %[1,3]
+    question_type = randi([1,2]);
+    question_type = 1;
+    
+    if question_type == 1
+        correct_english = char(english_list(correctNum));
+
+        multiple_choice = ['Score:                                   EXIT';
+                           'Which character is " " from the options below';...
+                           '                                             ';...
+                           '---------------------------------------------';...
+                           '|1.                  |2.                     ';...
+                           '---------------------------------------------';...
+                           '|3.                  |4.                     ';...
+                           '---------------------------------------------';...
+                           '                                             ';...
+                           '            Pleas click the answer           '];
+        question = multiple_choice;
+    else if question_type ==2
+          fill_in_blank = [ 'Score:                              EXIT';
+                            'Please type the Engilsh equivalence of  ';
+                            '                                        ';
+                            '                                        ';
+                            '                                        ';
+                            'ANSWER:____                             ';
+                            'please type your answer                 '];
+
+          question = fill_in_blank;    
+    end
 
 end
