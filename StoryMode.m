@@ -70,6 +70,23 @@ function story_scene = StoryMode(level)
         story_scene = [story_scene_top;story_scene_middle_temp;story_scene_middle_temp1;story_scene_middle_temp2;story_scene_middle_temp3;story_scene_middle_temp4;...
             story_scene_middle_temp5; story_scene_middle_temp6; story_scene_middle_temp7; story_scene_middle_temp8; story_scene_middle_temp9; story_scene_middle_temp10];
         
+        level = level + 1;
+
+
+    elseif level==2
+
+        lesson_text_1 = ['                                                  ';
+                         '           LESSON 1: THE VOWELS (A - O)           ';
+                         '                                                  ';
+                         ' [A] : A is for Apple. It looks like an apple     ';
+                         '       hanging from a tree.                       ';
+                         '                                                  ';
+                         ' [I] : I looks like two Ice-cream cones           ';
+                         '       standing side-by-side.                     ';
+                         '                                                  '];
+                     
+        story_scene = lesson_text_1;
+        
     end
 
 end 
