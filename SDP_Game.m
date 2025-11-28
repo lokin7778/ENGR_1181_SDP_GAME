@@ -346,7 +346,12 @@ clc
                             numTry = numTry + 1;
                             msgbox('Wrong! Try again.');
                             pause(3);
-                        end
+                            clf;
+                            drawScene(home_object, question)
+                            text(100, 10, num2str(score), 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % score
+                            text(615, 25, output1, 'FontSize', 25, 'Color',[0.8 0.8 0.8]);     
+                            
+                         end
 
                     end
 
