@@ -327,9 +327,14 @@ clc
 
                     drawScene(home_object, question)
                     text(615, 25, output1, 'FontSize', 25, 'Color',[0.8 0.8 0.8]);
-                    [r_fill, c_fill] = getMouseInput(home_object);
+                    [r_fill, c_fill] = getMouseInput(home_object)
+                    if r_fill == 1 && c_fill >= 37 && c_fill <= 40
+                            exit_in_mode = 1; % the user clicked exit
+                            break; % exit the while userCh ~= correct_position
+                    end
                     userinput = getKeyboardInput(home_object)
                     text(120, 80, userinput, 'FontSize', 30, 'Color',[0.8 0.8 0.8]);
+
                     pause(2);
                     clf; % clear the figure before generating a new question
     
