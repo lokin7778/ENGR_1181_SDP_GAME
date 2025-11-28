@@ -42,7 +42,7 @@ function [question_type, question, correctOption, false1Option, false2Option, fa
 
                          %[1,3]
     question_type = randi([1,2]);
-    question_type = 1;
+    question_type = 2;
     
     if question_type == 1
         correct_english = char(english_list(correctNum));
