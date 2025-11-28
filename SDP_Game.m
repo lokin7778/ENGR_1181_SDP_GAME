@@ -326,9 +326,10 @@ clc
                     [question_type, question, output1, output2, output3, output4, correct_english] = ranQuestion(1,5);
 
                     drawScene(home_object, question)
-                    text(615, 30, output1, 'FontSize', 25, 'Color',[0.8 0.8 0.8]);
+                    text(615, 25, output1, 'FontSize', 25, 'Color',[0.8 0.8 0.8]);
+                    [r_fill, c_fill] = getMouseInput(home_object);
                     userinput = getKeyboardInput(home_object)
-                    text(615, 60, userinput, 'FontSize', 25, 'Color',[0.8 0.8 0.8]);
+                    text(120, 80, userinput, 'FontSize', 30, 'Color',[0.8 0.8 0.8]);
                     pause(2);
                     clf; % clear the figure before generating a new question
     
