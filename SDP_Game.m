@@ -50,13 +50,39 @@ clc
         if (isequal(home_screen_keyboard_input,'1'))
             
             % STORY MODE
-            story_instructions = StoryMode(home_screen_keyboard_input)
-            drawScene(home_object, story_instructions);
+
+            % used to count the level. The first is level 0 which is the
+            % instructions. 
+            level = 0;
+
+            % creates a scene equal to the output of the StoryMode.m
+            % function. The input is the level. It will choose which scene
+            % to output based on the level. 
+            story_instructions = StoryMode(level);
+
+            % draws the scene from the StoryMode.m function
+            drawScene(home_object, story_instructions)
+
+            % gets mouse input which determines when the user has to play
+            [r_instructions, c_instructions] = getMouseInput(home_object)
+
+            % checks what is the mouse input and branches if the row and column
+            % are within that treshold.
+            if (r_instructions==25 && ( c_instructions>=22 && c_instructions<=25))
+                level = level + 1;
+                story_introduction = StoryMode(level); % calls the function again
+                drawScene(home_object, story_introduction);
+            end
+
             flag = false;
 
         elseif (isequal(home_screen_keyboard_input,'2'))
             
             % INFINITE HIRAGANA MODE
+
+            % check to see if the ranQustion.m function correctly generates
+            % 4 diffrent hiragana
+            [output1, output2, output3, output4] = ranQuestion(1,10)
             ...
             flag = false;
 
@@ -66,6 +92,3 @@ clc
         end
         
     end
-
-    % FIRST GIT BRANCH COMMENT
-
