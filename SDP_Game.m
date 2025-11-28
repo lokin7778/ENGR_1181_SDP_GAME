@@ -227,6 +227,10 @@ clc
 
             % variable that will keep track of the player's score
             score = 0;
+
+            % variable that will be used to keep track of the
+            % number of trys.
+            numTry = 0;
             
             while exit_in_mode == 0
     
@@ -239,10 +243,6 @@ clc
     
                 
                 if question_type == 1 % multiple choice
-
-                    % variable that will be used to keep track of the
-                    % number of trys.
-                    numTry = 0;
 
                     % creates a vector set to the output options
                     options = {output1, output2, output3, output4};
@@ -326,14 +326,39 @@ clc
                     [question_type, question, output1, output2, output3, output4, correct_english] = ranQuestion(1,5);
 
                     drawScene(home_object, question)
+                    text(100, 10, num2str(score), 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % score
                     text(615, 25, output1, 'FontSize', 25, 'Color',[0.8 0.8 0.8]);
-                    [r_fill, c_fill] = getMouseInput(home_object)
-                    if r_fill == 1 && c_fill >= 37 && c_fill <= 40
-                            exit_in_mode = 1; % the user clicked exit
-                            break; % exit the while userCh ~= correct_position
+
+                    userinput = " ";
+
+                    while ~isequal(userinput, correct_english)
+                        userinput = " ";
+
+                        [r_fill, c_fill] = getMouseInput(home_object)
+                        if r_fill == 1 && c_fill >= 37 && c_fill <= 40
+                                exit_in_mode = 1; % the user clicked exit
+                                break; % exit the while userCh ~= correct_position
+                        end
+                        userinput = getKeyboardInput(home_object)
+                        text(120, 80, userinput, 'FontSize', 30, 'Color',[0.8 0.8 0.8]);
+
+                        if ~isequal(userinput, correct_english)
+                            numTry = numTry + 1;
+                            msgbox('Wrong! Try again.');
+                            pause(3);
+                        end
+
                     end
-                    userinput = getKeyboardInput(home_object)
-                    text(120, 80, userinput, 'FontSize', 30, 'Color',[0.8 0.8 0.8]);
+
+                    numTry = numTry + 1;
+                    msgbox('Correct!!!');
+                    % increase score by the correct amount depending on
+                    % the amount of trys. 
+                    if numTry == 1
+                        score = score + 1;
+                    else
+                        score = score + .5;
+                    end
 
                     pause(2);
                     clf; % clear the figure before generating a new question
