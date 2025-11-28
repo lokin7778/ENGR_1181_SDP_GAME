@@ -64,8 +64,9 @@ function [question_type, question, correctOption, false1Option, false2Option, fa
                             '                                        ';
                             '                                        ';
                             '                                        ';
-                            'ANSWER:____                             ';
-                            'please type your answer                 '];
+                            'ANSWER:__                               ';
+                            'please press any key then type your     ';
+                            'answer                                  '];
 
           question = fill_in_blank;    
     end
