@@ -10,7 +10,7 @@ function [question_type, question, correctOption, false1Option, false2Option, fa
     correctNum = randi([startNum, endNum]);
     correctOption = hiragana_list(correctNum);
     
-    % genorates a random number that will be used as the index of the
+    % genorates a random ngumber that will be used as the index of the
     % first incorrect answer
     false1Num = randi([startNum, endNum]);
 
