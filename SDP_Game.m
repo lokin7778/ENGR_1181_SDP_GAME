@@ -72,6 +72,7 @@ clc
                 level = level + 1;
                 story_introduction = StoryMode(level); % calls the function again
                 drawScene(home_object, story_introduction);
+                
             end
 
             flag = false;
