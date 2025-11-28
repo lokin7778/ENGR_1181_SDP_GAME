@@ -323,9 +323,14 @@ clc
     
                 elseif question_type == 2 % fill in the blank
     
+                    [question_type, question, output1, output2, output3, output4, correct_english] = ranQuestion(1,5);
+
                     drawScene(home_object, question)
-                    text(615, 10, output1, 'FontSize', 25, 'Color',[0.8 0.8 0.8]);
-                    
+                    text(615, 30, output1, 'FontSize', 25, 'Color',[0.8 0.8 0.8]);
+                    userinput = getKeyboardInput(home_object)
+                    text(615, 60, userinput, 'FontSize', 25, 'Color',[0.8 0.8 0.8]);
+                    pause(2);
+                    clf; % clear the figure before generating a new question
     
                 end
 
