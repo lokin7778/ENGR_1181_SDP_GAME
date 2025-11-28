@@ -75,15 +75,7 @@ function story_scene = StoryMode(level)
 
     elseif level==2
 
-        lesson_text_1 = ['                                                  ';
-                         '           LESSON 1: THE VOWELS (A - O)           ';
-                         '                                                  ';
-                         ' [A] : A is for Apple. It looks like an apple     ';
-                         '       hanging from a tree.                       ';
-                         '                                                  ';
-                         ' [I] : I looks like two Ice-cream cones           ';
-                         '       standing side-by-side.                     ';
-                         '                                                  '];
+        
                      
         story_scene = lesson_text_1;
         
