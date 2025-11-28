@@ -1,32 +1,78 @@
+function story_scene = StoryMode(level)
     % STORY MODE
-    
-    % Instructions Page
-    
-    instructions_text = ['                                                  ';
-                         ''         WELCOME TO THE STORY MODE WARRIOR        '';
-                         ''                                                  '';
-                         ''                BASIC INSTRUCTIONS                '';
-                         ''                                                  '';
-                         '' 1. You will be introduced to a story where there '';
-                         '    would be basic Hiragana characters taught with';
-                         ''    their English equivalents.                    '';
-                         ''                                                  '';
-                         ' 2. Make sure that while the characters are taught';
-                         ''    you write down each of them at least 5 times  '';
-                         ''    so that you learn it by heart.                '';
-                         ''                                                  '';
-                         ' 3. After learning 2 characters, you will be asked';
-                         ''    questions based on that, for each answer you  '';
-                         ''    will damage the demon in front of you and for '';
-                         ''    each wrong answer the demon will give damage  '';
-                         ''    to you.                                       '';
-                         ''                                                  '';
-                         '' 4. This process will repeat until you have been  '';
-                         ''    taught 10 characters of basic Hiragana.       '';
-                         '                                                    ';
-                         '                                                    '];
-    
-    SDP_obj = simpleGameEngine('custom.png',16,16,4,[217, 135, 41]);
-    drawScene(SDP_obj);
+
+    % if the level is equal to 0 the scene that will be returned is the
+    % instructions scene.
+    if level == 0
+        % Instructions Page
+        
+        instructions_text = ['                                                  ';
+                             '         WELCOME TO THE STORY MODE WARRIOR        ';
+                             '                                                  ';
+                             '                BASIC INSTRUCTIONS                ';
+                             '                                                  ';
+                             ' 1. You will be introduced to a story where there ';
+                             '    would be basic Hiragana characters taught with';
+                             '    their English equivalents.                    ';
+                             '                                                  ';
+                             ' 2. Make sure that while the characters are taught';
+                             '    you write down each of them at least 5 times  ';
+                             '    so that you learn it by heart.                ';
+                             '                                                  ';
+                             ' 3. After learning 2 characters, you will be asked';
+                             '    questions based on that, for each answer you  ';
+                             '    will damage the demon in front of you and for ';
+                             '    each wrong answer the demon will give damage  ';
+                             '    to you.                                       ';
+                             '                                                  ';
+                             ' 4. This process will repeat until you have been  ';
+                             '    taught 10 characters of basic Hiragana.       ';
+                             '                                                  ';
+                             '           CLICK ON PLAY WHEN READY               ';
+                             '                                                  ';
+                             '                     PLAY                         ';
+                             '                                                  '];
+        % sets the story scene (story_scene) to the instructions text. 
+        story_scene = instructions_text;
+
+    % if the mouse input matches the given row and column, go to level 1,
+    % the main story mode game.
+
+    elseif level==1
+        
+        % Main Story mode version of the game
+        
+        border_outline_topleft = 130;
+        border_outline_topright = 132;
+        border_outline_bottomleft = 194;
+        border_outline_bottomright = 196;
+        border_outline_left = 162;
+        border_outline_right = 164;
+        warrior_sprite1 = 133;
 
 
+        
+
+        story_scene_top = [border_outline_topleft,131,131,131,131,131,131,131,131,131,131,131,131,131,131,131,131,131,...
+            131,131,131,131,131,131,131,131,131,131,131,131,131,border_outline_topright];
+        
+        story_scene_middle_temp = [border_outline_left, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, border_outline_right];
+        story_scene_middle_temp1 = [border_outline_left, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, border_outline_right];
+        story_scene_middle_temp2 = [border_outline_left, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, border_outline_right];
+        story_scene_middle_temp3 = [border_outline_left, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, border_outline_right];
+        story_scene_middle_temp4 = [border_outline_left, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, border_outline_right];
+        story_scene_middle_temp5 = [border_outline_left, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, border_outline_right];
+        story_scene_middle_temp6 = [border_outline_left, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, border_outline_right];
+        story_scene_middle_temp7 = [border_outline_left, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, border_outline_right];
+        story_scene_middle_temp8 = [border_outline_left, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, border_outline_right];
+        story_scene_middle_temp9 = [border_outline_left, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, border_outline_right];
+        story_scene_middle_temp10 = [border_outline_bottomleft, 195, 195, 195, 195, 195, 195, 195, 195, 195, 195, 195, 195, 195, 195, 195, 195, 195, 195, 195, 195,...
+            195, 195, 195, 195, 195, 195, 195, 195, 195, 195, border_outline_bottomright];
+        
+        
+        story_scene = [story_scene_top;story_scene_middle_temp;story_scene_middle_temp1;story_scene_middle_temp2;story_scene_middle_temp3;story_scene_middle_temp4;...
+            story_scene_middle_temp5; story_scene_middle_temp6; story_scene_middle_temp7; story_scene_middle_temp8; story_scene_middle_temp9; story_scene_middle_temp10];
+        
+    end
+
+end 
