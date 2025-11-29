@@ -12,7 +12,17 @@ function story_scene = StoryMode(level)
     % 11: The Game Map
 
     % --- LEVEL 0: INSTRUCTIONS ---
-    if level == 0
+    if level == 0 
+
+        old_man_sprite = 140; % declares the sprite number for the old man
+
+        protagonist_sprite = 129; % declares the sprite number for the protagonist
+
+        boss_sprite = 133; % declares the boss sprite number 
+
+        a = [old_man_sprite;protagonist_sprite;boss_sprite];
+        
+
         instructions_text = ['                                                  ';
                              '         WELCOME TO THE STORY MODE WARRIOR        ';
                              '                                                  ';
@@ -36,6 +46,7 @@ function story_scene = StoryMode(level)
                              '                                                  ';
                              '                     PLAY                         ';
                              '                                                  '];
+      
         story_scene = instructions_text;
 
     % --- LEVEL 1: LESSON 1 (A & I) ---
