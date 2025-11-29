@@ -79,52 +79,52 @@ clc
             
             if level == 1 % Lesson 1: A and I
                 h1 = text(220, 50, 'あ', fontStyle{:}); % Matches for A with the proper row and column
-                h2 = text(220, 150, 'い', fontStyle{:}); % Matches for I with the proper row and column
+                h2 = text(220, 167, 'い', fontStyle{:}); % Matches for I with the proper row and column
                 hText = [h1, h2];
                 
             elseif level == 2 % Quiz 1 (Answer: A)
                 h1 = text(260, 120, 'あ', fontStyle{:}); % Option 1
-                h2 = text(260, 150, 'い', fontStyle{:}); % Option 2
+                h2 = text(260, 165, 'い', fontStyle{:}); % Option 2
                 hText = [h1, h2];
                 
             elseif level == 3 % Lesson 2: U and E
                 h1 = text(220, 50, 'う', fontStyle{:});
-                h2 = text(220, 150, 'え', fontStyle{:});
+                h2 = text(220, 167, 'え', fontStyle{:});
                 hText = [h1, h2];
                 
             elseif level == 4 % Quiz 2 (Answer: E)
                 h1 = text(260, 120, 'う', fontStyle{:});
-                h2 = text(260, 150, 'え', fontStyle{:});
+                h2 = text(260, 165, 'え', fontStyle{:});
                 hText = [h1, h2];
                 
             elseif level == 5 % Lesson 3: O and KA
                 h1 = text(220, 50, 'お', fontStyle{:});
-                h2 = text(220, 150, 'か', fontStyle{:});
+                h2 = text(220, 167, 'か', fontStyle{:});
                 hText = [h1, h2];
                 
             elseif level == 6 % Quiz 3 (Answer: KA)
                 h1 = text(260, 120, 'お', fontStyle{:});
-                h2 = text(260, 150, 'か', fontStyle{:});
+                h2 = text(260, 167, 'か', fontStyle{:});
                 hText = [h1, h2];
                 
             elseif level == 7 % Lesson 4: KI and KU
                 h1 = text(220, 50, 'き', fontStyle{:});
-                h2 = text(220, 150, 'く', fontStyle{:});
+                h2 = text(220, 160, 'く', fontStyle{:});
                 hText = [h1, h2];
                 
             elseif level == 8 % Quiz 4 (Answer: KU)
                 h1 = text(260, 120, 'き', fontStyle{:});
-                h2 = text(260, 150, 'く', fontStyle{:});
+                h2 = text(260, 167, 'く', fontStyle{:});
                 hText = [h1, h2];
                 
             elseif level == 9 % Lesson 5: KE and KO
                 h1 = text(220, 55, 'け', fontStyle{:});
-                h2 = text(220, 150, 'こ', fontStyle{:});
+                h2 = text(220, 167, 'こ', fontStyle{:});
                 hText = [h1, h2];
                 
             elseif level == 10 % Quiz 5 (Answer: KO)
                 h1 = text(260, 120, 'け', fontStyle{:});
-                h2 = text(260, 150, 'こ', fontStyle{:});
+                h2 = text(260, 167, 'こ', fontStyle{:});
                 hText = [h1, h2];
             end
             
@@ -350,7 +350,7 @@ clc
                             drawScene(home_object, question)
                             text(100, 10, num2str(score), 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % score
                             text(615, 25, output1, 'FontSize', 25, 'Color',[0.8 0.8 0.8]);     
-                            
+
                          end
 
                     end
