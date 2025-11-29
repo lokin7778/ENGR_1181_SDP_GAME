@@ -1,4 +1,4 @@
-function story_scene = StoryMode(level)
+function story_scene = StoryMode(level,)
     % STORY MODE SCENES
     % Returns the text/sprite matrix for each stage of the game.
     %
