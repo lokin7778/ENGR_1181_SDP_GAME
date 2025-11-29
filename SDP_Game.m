@@ -40,8 +40,7 @@ while (flag)
         
         level = 0;
         score = 0; % Initialize Score
-        story = 0;
-
+        
         % Loop stops after Level 10 (The last Quiz)
         while level <= 10
             
@@ -60,9 +59,9 @@ while (flag)
             end
             
             fontStyle = {'FontSize', 16, 'Color',[0.8 0.8 0.8]};
-
+            
             % --- DRAW CHARACTERS (Your Coordinates) ---
-            if level == 1 && story == 1 % Lesson 1: A and I
+            if level == 1 % Lesson 1: A and I
                 h1 = text(220, 50, 'あ', fontStyle{:}); 
                 h2 = text(220, 167, 'い', fontStyle{:}); 
                 hText = [h1, h2];

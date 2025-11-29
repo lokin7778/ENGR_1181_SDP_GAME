@@ -9,28 +9,19 @@ function story_scene = StoryMode(level)
     % 5: Lesson 3 (O, KA) -> 6: Quiz 3
     % 7: Lesson 4 (KI, KU)-> 8: Quiz 4
     % 9: Lesson 5 (KE, KO)-> 10: Quiz 5
-
-    old_man_sprite = 140; % declares the sprite number for the old man
-    
-    protagonist_sprite = 129; % declares the sprite number for the protagonist
-    
-    boss_sprite = 133; % declares the boss sprite number
-
-    tree_sprite = 135;
-
-    grass_sprite = 136;
-
-    fire_sprite = 134;
-
-    tree_trunk_sprite = 137;
-
-    ladder_sprite = 138;
-
-    ladder_continued_sprite = 139;
-
+    % 11: The Game Map
 
     % --- LEVEL 0: INSTRUCTIONS ---
     if level == 0 
+
+        old_man_sprite = 140; % declares the sprite number for the old man
+
+        protagonist_sprite = 129; % declares the sprite number for the protagonist
+
+        boss_sprite = 133; % declares the boss sprite number 
+
+        a = [old_man_sprite;protagonist_sprite;boss_sprite];
+        
 
         instructions_text = ['                                                  ';
                              '         WELCOME TO THE STORY MODE WARRIOR        ';
@@ -58,12 +49,8 @@ function story_scene = StoryMode(level)
       
         story_scene = instructions_text;
 
-
-
     % --- LEVEL 1: LESSON 1 (A & I) ---
     elseif level == 1
-
-
         scene = ['                                                  ';
                  '          LESSON 1: VOWELS (Part 1)               ';
                  '                                                  ';
@@ -83,7 +70,6 @@ function story_scene = StoryMode(level)
                  '                                                  ';
                  '               CLICK TO START QUIZ                ';
                  '                                                  '];
-       
         story_scene = scene;
 
     % --- LEVEL 2: QUIZ 1 ---
