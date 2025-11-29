@@ -55,7 +55,7 @@ while (flag)
             
             % --- DISPLAY SCORE (ONLY FROM LEVEL 1 ONWARDS) ---
             if level > 0
-                text(20, 30, ['Score: ' num2str(score)], );
+                text(20, 30, ['Score: ' num2str(score)], 'FontSize', 12, 'Color',[0.8 0.8 0.8]);
             end
             
             fontStyle = {'FontSize', 16, 'Color',[0.8 0.8 0.8]};
@@ -142,15 +142,18 @@ while (flag)
                             if firstAttempt
                                 score = score + 1;
                                 msgbox(['Correct! +1 Point. Total: ' num2str(score)]);
+                                pause(2);
                             else
                                 score = score + 0.5;
                                 msgbox(['Correct! +0.5 Points. Total: ' num2str(score)]);
+                                pause(2);
                             end
                             
                             validKey = true; % Break loop to go to next level
                         else
                             % Wrong Answer
                             msgbox('Wrong! You take damage. Try again.');
+                            pause(2);
                             firstAttempt = false; % Next guess is worth less
                         end
                     end
@@ -175,7 +178,6 @@ while (flag)
         % =================================================================
         %                     INFINITE HIRAGANA MODE
         % =================================================================
-        % (Kept exactly as you provided)
 
         infinite_instructions = ['                                                              ';
                                  '         WELCOME TO THE INFINITE HIRAGANA MODE WARRIOR        ';
@@ -254,17 +256,25 @@ while (flag)
                 text(100, 10, num2str(score), 'FontSize', 25, 'Color',[0.8 0.8 0.8]); 
                 text(615, 25, output1, 'FontSize', 25, 'Color',[0.8 0.8 0.8]);
 
-                userinput = " ";
-                while ~isequal(userinput, correct_english)
-                    userinput = " ";
+                userInput1 = " ";
+                userInput2 = " ";
+                while ~isequal(userInput1, correct_english)
+                   
                     [r_fill, c_fill] = getMouseInput(home_object);
                     if r_fill == 1 && c_fill >= 37 && c_fill <= 40
                             exit_in_mode = 1; break; 
                     end
-                    userinput = getKeyboardInput(home_object);
-                    text(120, 80, userinput, 'FontSize', 30, 'Color',[0.8 0.8 0.8]);
+                   if length(correct_english) == 1
+                       userInput1 = getKeyboardInput(home_object);
+                       text(120, 80, userInput1, 'FontSize', 30, 'Color',[0.8 0.8 0.8]);
+                   else 
+                       userInput1 = getKeyboardInput(home_object);
+                       text(120, 80, userInput1, 'FontSize', 30, 'Color',[0.8 0.8 0.8]);
+                       userInput2 = getKeyboardInput(home_object);
+                       text(120, 80, userInput1, 'FontSize', 30, 'Color',[0.8 0.8 0.8]);
+                   end
 
-                    if ~isequal(userinput, correct_english)
+                    if ~isequal(userInput1, correct_english)
                         numTry = numTry + 1;
                         msgbox('Wrong! Try again.');
                         pause(3); clf;
@@ -275,7 +285,11 @@ while (flag)
                 end
                 numTry = numTry + 1;
                 msgbox('Correct!!!');
-                if numTry == 1, score = score + 1; else, score = score + .5; end
+                if numTry == 1
+                    score = score + 1; 
+                else
+                    score = score + .5; 
+                end
                 pause(2); clf; 
             end
         end 

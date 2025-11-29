@@ -258,11 +258,12 @@ while (flag)
 
                 userinput = " ";
                 while ~isequal(userinput, correct_english)
-                    userinput = " ";
+                   
                     [r_fill, c_fill] = getMouseInput(home_object);
                     if r_fill == 1 && c_fill >= 37 && c_fill <= 40
                             exit_in_mode = 1; break; 
                     end
+                    
                     userinput = getKeyboardInput(home_object);
                     text(120, 80, userinput, 'FontSize', 30, 'Color',[0.8 0.8 0.8]);
 
@@ -277,7 +278,11 @@ while (flag)
                 end
                 numTry = numTry + 1;
                 msgbox('Correct!!!');
-                if numTry == 1, score = score + 1; else, score = score + .5; end
+                if numTry == 1
+                    score = score + 1; 
+                else
+                    score = score + .5; 
+                end
                 pause(2); clf; 
             end
         end 

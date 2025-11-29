@@ -59,6 +59,7 @@ function [question_type, question, correctOption, false1Option, false2Option, fa
                            '            Pleas click the answer           '];
         question = multiple_choice;
     else if question_type ==2
+          correct_english = char(english_list(correctNum));
           fill_in_blank = [ 'Score:                              EXIT';
                             'Please type the Engilsh equivalence of  ';
                             '                                        ';
