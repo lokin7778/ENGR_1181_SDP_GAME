@@ -207,94 +207,156 @@ while (flag)
         numTry = 0;
         
         while exit_in_mode == 0
+            % reset numTry
+            numTry = 0;
+
+            % call the ranQuestion.m function
             [question_type, question, output1, output2, output3, output4, correct_english] = ranQuestion(1,10);
     
+            % multiple choice
             if question_type == 1 
+                clf;
+                % creates a vector with the outputs of the ranQuestion.m
+                % function.
                 options = {output1, output2, output3, output4};
+
+                % reoranges them in a random order
                 shuffled_order = randperm(4);
                 options = options(shuffled_order);
+
+                % sets the correct one 
                 correct_position = find(shuffled_order == 1);
     
+                % draws the question
                 drawScene(home_object, question)
-                text(100, 10, num2str(score), 'FontSize', 25, 'Color',[0.8 0.8 0.8]); 
-                text(320, 25, correct_english, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); 
-                text(50, 75, options(1), 'FontSize', 25, 'Color',[0.8 0.8 0.8]); 
-                text(390, 75, options(2), 'FontSize', 25, 'Color',[0.8 0.8 0.8]); 
-                text(50, 105, options(3), 'FontSize', 25, 'Color',[0.8 0.8 0.8]); 
-                text(390, 105, options(4), 'FontSize', 25, 'Color',[0.8 0.8 0.8]); 
+
+                % output the score, english, and japanese
+                text(100, 10, num2str(score), 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % score
+                text(320, 25, correct_english, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % english
+                text(50, 75, options(1), 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % 1.
+                text(390, 75, options(2), 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % 2.
+                text(50, 105, options(3), 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % 3.
+                text(390, 105, options(4), 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % 4.
     
+                % will hold user's choice
                 userCh = 0;
+
+                % will allow the user to guess until they get it right or
+                % choose to exit. 
                 while userCh ~= correct_position
                     [r_multiple_choice, c_multiple_choice] = getMouseInput(home_object);
+                    
+                    % sets the user's choice
                     if r_multiple_choice == 5 && c_multiple_choice >= 1 && c_multiple_choice <= 22
-                        userCh = 1; numTry = numTry + 1; 
+                        userCh = 1; 
+                        numTry = numTry + 1; % increse number of trys
                     elseif r_multiple_choice == 5 && c_multiple_choice >= 22 && c_multiple_choice <= 45
-                        userCh = 2; numTry = numTry + 1; 
+                        userCh = 2; 
+                        numTry = numTry + 1; % increse number of trys
                     elseif r_multiple_choice == 7 && c_multiple_choice >= 1 && c_multiple_choice <= 22
-                        userCh = 3; numTry = numTry + 1; 
+                        userCh = 3; 
+                        numTry = numTry + 1; % increse number of trys
                     elseif r_multiple_choice == 7 && c_multiple_choice >= 22 && c_multiple_choice <= 45
-                        userCh = 4; numTry = numTry + 1; 
+                        userCh = 4; 
+                        numTry = numTry + 1; % increse number of trys
                     elseif r_multiple_choice == 1 && c_multiple_choice >= 42 && c_multiple_choice <= 45
-                        exit_in_mode = 1; break; 
+                        exit_in_mode = 1; % sets exit_in_mode to 1 wich will take them back to the home screen
+                        break; % breaks out of the loop
                     end
     
+                    % if the user choose the wrong option they will be told
+                    % to try agian
                     if userCh ~= correct_position
                         msgbox('Wrong! Try again.');
                         pause(3);
                     end
                 end
-
+                
                 if exit_in_mode == 0
+                    %if they chose the right answer they will be told so.
                     msgbox('Correct!!!');
-                    if numTry == 1, score = score + 1; else, score = score + .5; end
-                    pause(2); clf; 
+    
+                    % if they got the question right on their fist try, their
+                    % score will go up by 1. if they took more than one try
+                    % their score will go up by .5.
+                    if numTry == 1
+                        score = score + 1;
+                    else
+                        score = score + .5;
+                    end
+                    pause(2); % pauses for 2 seconds
+                    clf; % clears the figure 
                 end
     
-            elseif question_type == 2 
-                [question_type, question, output1, output2, output3, output4, correct_english] = ranQuestion(1,5);
-                drawScene(home_object, question)
-                text(100, 10, num2str(score), 'FontSize', 25, 'Color',[0.8 0.8 0.8]); 
-                text(615, 25, output1, 'FontSize', 25, 'Color',[0.8 0.8 0.8]);
 
-                userInput1 = " ";
-                userInput2 = " ";
-                while ~isequal(userInput1, correct_english)
+            % fill in the blank
+            elseif question_type == 2 
+                
+                % call the ranQuestion.m function with a ristriction on the
+                % outputs.
+                [question_type, question, output1, output2, output3, output4, correct_english] = ranQuestion(1,5);
+                
+                % draws the question
+                drawScene(home_object, question)
+                text(100, 10, num2str(score), 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % score 
+                text(615, 25, output1, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana 
+
+                % will be used to hold the user's input
+                userinput = " ";
+
+                % will allow them to try until they get it right or exit. 
+                while ~isequal(userinput, correct_english)
                    
+                    % gives the player a chance to exit.
                     [r_fill, c_fill] = getMouseInput(home_object);
                     if r_fill == 1 && c_fill >= 37 && c_fill <= 40
-                            exit_in_mode = 1; break; 
+                        exit_in_mode = 1; % sets exit_in_mode to 1 wich will take them back to the home screen
+                        break; % breaks out of the loop
                     end
-                   if length(correct_english) == 1
-                       userInput1 = getKeyboardInput(home_object);
-                       text(120, 80, userInput1, 'FontSize', 30, 'Color',[0.8 0.8 0.8]);
-                   else 
-                       userInput1 = getKeyboardInput(home_object);
-                       text(120, 80, userInput1, 'FontSize', 30, 'Color',[0.8 0.8 0.8]);
-                       userInput2 = getKeyboardInput(home_object);
-                       text(120, 80, userInput1, 'FontSize', 30, 'Color',[0.8 0.8 0.8]);
-                   end
+                    
+                    % takes in the user's input
+                    userinput = getKeyboardInput(home_object);
 
-                    if ~isequal(userInput1, correct_english)
-                        numTry = numTry + 1;
-                        msgbox('Wrong! Try again.');
-                        pause(3); clf;
+                    % displays the user's input
+                    text(120, 80, userinput, 'FontSize', 30, 'Color',[0.8 0.8 0.8]);
+
+                    % check to see if it was right.
+                    if ~isequal(userinput, correct_english)
+                        numTry = numTry + 1; % increse number of trys
+                        msgbox('Wrong! Try again.'); % tell them to try again
+                        pause(3); % pause for 3 seconds
+                        clf; % clears the firge
+
+                        % redraws the question
                         drawScene(home_object, question)
                         text(100, 10, num2str(score), 'FontSize', 25, 'Color',[0.8 0.8 0.8]); 
                         text(615, 25, output1, 'FontSize', 25, 'Color',[0.8 0.8 0.8]);     
                      end
                 end
-                numTry = numTry + 1;
+
+                numTry = numTry + 1; % increse number of trys
+
+                %if they input the right answer they will be told so.
                 msgbox('Correct!!!');
+
+                % if they got the question right on their fist try, their
+                % score will go up by 1. if they took more than one try
+                % their score will go up by .5.
                 if numTry == 1
                     score = score + 1; 
                 else
                     score = score + .5; 
                 end
-                pause(2); clf; 
+
+                pause(2); % pauses for 2 seconds 
+                clf; % clears the firgure
             end
         end 
-        pause(1)
+        pause(1) % pauses for 1 second
+        clf; % clears the figure to return to the home screen
     else
+        % if the user chooses anything other than 1 or 2 they will be told
+        % to rechoose. 
         msgbox("PLEASE ENTER A VALID CHOICE (1 OR 2)");
         pause(3) 
     end

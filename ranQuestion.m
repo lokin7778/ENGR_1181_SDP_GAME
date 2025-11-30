@@ -1,4 +1,4 @@
-function [question_type, question, correctOption, false1Option, false2Option, false3Option, correct_english] = ranQuestion (startNum, endNum)
+function [question, correctOption, false1Option, false2Option, false3Option, correct_english] = ranQuestion (startNum, endNum, question_type)
 
     hiragana_list = ["あ", "い", "う", "え", "お", "か", "き", "く", "け", "こ"];
     % english equivalents for the above given hiragana characters in order
@@ -39,9 +39,6 @@ function [question_type, question, correctOption, false1Option, false2Option, fa
        false3Num = randi([startNum, endNum]);
     end
     false3Option = hiragana_list(false3Num);
-
-                         %[1,3]
-    question_type = randi([1,2]);
     
     if question_type == 1
         correct_english = char(english_list(correctNum));
