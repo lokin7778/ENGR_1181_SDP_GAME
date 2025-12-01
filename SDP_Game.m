@@ -90,7 +90,7 @@ while (flag)
         score = 0; % Initialize Score
         
         % Loop stops after Level 10 (The last Quiz)
-        while level <= 10
+        while level <= 11
             
             % Load the scene text
             current_scene = StoryMode(level);

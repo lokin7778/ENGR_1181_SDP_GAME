@@ -283,28 +283,46 @@ function story_scene = StoryMode(level)
 
     % --- LEVEL 11: THE GAME MAP ---
     elseif level == 11
+
+        new_type_information = ['                                                 ';
+                 '                                                 ';
+                 '     OK Warrior! As you are done with the basic  ';
+                 '  training, it is time for some real world battle';
+                 '                                                 ';
+                 '  NEW TYPE OF QUESTIONS WHICH YOU MUST DODGE IN  ';
+                 '  ORDER TO BEAT THE DEMON, THE REAL STORY KICKS  ';
+                 '  IN NOW!                                        ';
+                 '                                                 ';
+                 '             CLICK ANYWHERE TO START             ';
+                 '                                                 ';
+                 '                       PLAY                      ';
+                 '                                                 ';
+                 '                                                 '];
+
+                story_scene = new_type_information;
+                
         % Map Construction
         
-        border_outline_topleft = 130;
-        border_outline_topright = 132;
-        border_outline_bottomleft = 194;
-        border_outline_bottomright = 196;
-        border_outline_left = 162;
-        border_outline_right = 164;
-        
-        % Build the Top Border
-        story_scene_top = [border_outline_topleft, repmat(131, 1, 30), border_outline_topright];
-        
-        % Build the Middle Rows (Empty area with side borders)
-        story_scene_middle_temp = [border_outline_left, repmat(4, 1, 30), border_outline_right];
-        
-        % Build the Bottom Border
-        story_scene_bottom = [border_outline_bottomleft, repmat(195, 1, 30), border_outline_bottomright];
-        
-        % Combine into one map matrix
-        % We stack the top, 10 middle rows, and the bottom.
-        story_scene = [story_scene_top;
-                       repmat(story_scene_middle_temp, 10, 1);
-                       story_scene_bottom];
+        % border_outline_topleft = 130;
+        % border_outline_topright = 132;
+        % border_outline_bottomleft = 194;
+        % border_outline_bottomright = 196;
+        % border_outline_left = 162;
+        % border_outline_right = 164;
+        % 
+        % % Build the Top Border
+        % story_scene_top = [border_outline_topleft, repmat(131, 1, 30), border_outline_topright];
+        % 
+        % % Build the Middle Rows (Empty area with side borders)
+        % story_scene_middle_temp = [border_outline_left, repmat(4, 1, 30), border_outline_right];
+        % 
+        % % Build the Bottom Border
+        % story_scene_bottom = [border_outline_bottomleft, repmat(195, 1, 30), border_outline_bottomright];
+        % 
+        % % Combine into one map matrix
+        % % We stack the top, 10 middle rows, and the bottom.
+        % story_scene = [story_scene_top;
+        %                repmat(story_scene_middle_temp, 10, 1);
+        %                story_scene_bottom];
     end
 end
