@@ -10,27 +10,72 @@ BGC = [217, 135, 41];
 home_object = simpleGameEngine('custom.png', sSize, sSize, zFactor, BGC);
 
 % --- HOME SCREEN TEXT ---
-home_screen_wordsR1 = ['           Kana no Densetsu          '];
-home_screen_wordsR2 = [129, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 129];
-home_screen_wordsR3 = ['          Please choose mode         '];
-home_screen_wordsR4 = ['                                     '];
-home_screen_wordsR5 = ['            1. Story Mode            '];
-home_screen_wordsR6 = ['         2. Infinite Hiragana        '];
-home_screen_wordsR7 = ['                                     '];
-home_screen_wordsR8 = ['         Please click 1 or 2         '];
+home_screen_wordsR1 = ['      Kana no Densetsu     '];
+home_screen_wordsR2 = [129, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 133];
+home_screen_wordsR3 = ['     Please choose mode    '];
+home_screen_wordsR4 = ['                           '];
+home_screen_wordsR5 = ['       1. Story Mode       '];
+home_screen_wordsR6 = ['    2. Infinite Hiragana   '];
+home_screen_wordsR7 = ['                           '];
+home_screen_wordsR8 = ['    Please click 1 or 2    '];
 
 home_screen_scene = [home_screen_wordsR1; home_screen_wordsR2; ...
     home_screen_wordsR3; home_screen_wordsR4; home_screen_wordsR5;...
     home_screen_wordsR6; home_screen_wordsR7; home_screen_wordsR8];
 
 % --- MAIN LOOP ---
+% allows the game to run infinitly until the player compleatly exits out of
+% the game. 
 flag = true;
 while (flag)
     
-    % Draw Home Screen
-    drawScene(home_object, home_screen_scene) 
-    home_screen_keyboard_input = getKeyboardInput(home_object);
+%------------------------- HOME SCREEN CODE ------------------------------%
+
+    % reads in the audio file
+    [bgm, fs] = audioread('02. Beginning of the Journey.mp3');
+
+    % finds the length of the song
+    songLength = length(bgm)/fs;
+
+    tic;% starts the timer by getting the system time when the song begins.
+    sound(bgm, fs); % will play the song once
+
+    % variable to see if the player in on the home screen
+    homeScreen = true;
+
+    % while the player in on the home screen the music will play and the
+    % user has the opption to choose a mode.
+    while homeScreen
+
+        % Draw Home Screen
+        drawScene(home_object, home_screen_scene)
+
+        % check for user input
+        home_screen_keyboard_input = getKeyboardInput(home_object);
+    
+        % if the user chose one of the modes homeScreen will be false
+        % meaning the home screen loop will end and the mode the player
+        % chose will begin. THe "clear sound" ends the song regardless of
+        % if it is finished or not.
+        if isequal(home_screen_keyboard_input, '1') || isequal(home_screen_keyboard_input, '2')
+            homeScreen = false;  % stop home screen loop
+            clear sound
+        end
+    
+        % Restart song if it has finished. It knows this because toc is
+        % equal to the current system time, tic is equal to when the system
+        % began, it then subracts the toc by the tic which becomes the new
+        % toc. If toc is greater than or equal to the length of the sont,
+        % the song will play agian and tic will reset. 
+        if toc >= songLength
+            sound(bgm, fs); % will play the song once
+            tic;  % reset timer
+        end
+    end
+
+
+%-------------------------- DIFFRENT MODES -------------------------------%
 
     if (isequal(home_screen_keyboard_input,'1'))
         
@@ -358,7 +403,28 @@ while (flag)
                     clf; % clears the firgure
                 end
             end
-        end 
+        end
+
+        % creating the final score scene when exiting the infinite hiragana
+        % mode.
+        final_sceneP1 = ['Thank you for playing. You are on your';
+                         'way to becoming a hiragana master.    ';
+                         '                                      '];
+        final_sceneP2 = [1,129,1,1,1,1,1,1,1,1,133,1,1,1,1,1,1,1,1,1,1,1,1 ...
+                         1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
+        final_sceneP3 = ['                                      ';
+                         'Please click anywhere to return to the';
+                         'home screen.                          '];
+        final_scene =[final_sceneP1;final_sceneP2;final_sceneP3];
+
+        % drawing the scene and outputing their finale score.
+        drawScene(home_object,final_scene);
+        text(40, 57,'Final Score:','FontSize', 25, 'Color',[0.8 0.8 0.8])
+        text(130, 57, num2str(score),'FontSize', 25, 'Color',[0.8 0.8 0.8])
+        
+        % get mouse input to return to the home screen.
+        [r_exit, c_exit] = getMouseInput(home_object);
+
         pause(1) % pauses for 1 second
         clf; % clears the figure to return to the home screen
     else
