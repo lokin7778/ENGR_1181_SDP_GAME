@@ -1,4 +1,5 @@
-function score_moving = Moving_Character(level)
+function score_moving = Moving_Character(level, correctHiragana, wrongHiragana, correctEnglish)
+
 
     % The protagonist sprite 
     % Create the scene
@@ -31,8 +32,11 @@ function score_moving = Moving_Character(level)
     borders = [border_top; border_middle1; border_middle2; border_middle3; border_middle4; ...
         border_middle5; border_middle6; border_middle7; border_middle8; border_middle9; border_middle10; border_bottom];
 
-    question_type = randi([1,2]);
-    [question, output1, output2, output3, output4, correct_english] = ranQuestion(1,10, question_type)
+    
+    correctPlacement = randi([1,2]);
+
+    numTry = 0;
+
 
     % Sprite locations
     player_sprite = 129;
@@ -43,53 +47,140 @@ function score_moving = Moving_Character(level)
     
     displayBox(i,j) = player_sprite;
     drawScene(cinScene,displayBox,borders);
-    
+
     % while 1 is an infinite while loop
     while 1
-        text(50, 100, output1, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
-        text(1450, 100, output2, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
-        text(50, 870, output3, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
-        text(1450, 870, output4, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
+
+        if correctPlacement == 1
+            % correct
+            text(100, 845, correctHiragana, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % left corner
+            % wrong
+            text(1450, 845, wrongHiragana, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % right corner
+        else 
+            % correct
+            text(1450, 845, correctHiragana, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % right corner
+            % correct
+            text(100, 845, wrongHiragana, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % left corner
+        end
+            text(100, 125, '        Quickly move to hiragana "  "  in order to defete the demon', 'FontSize', 25, 'Color',[0.8 0.8 0.8]);
+            text(750, 125, correctEnglish, 'FontSize', 25, 'Color',[0.8 0.8 0.8]);
+
+
+
         key = getKeyboardInput(cinScene);
          
         
         if strcmp(key, 'uparrow')
             displayBox(i,j) = 1;
             displayBox(i-1,j) = player_sprite;
-            text(50, 100, output1, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
-            text(1450, 100, output2, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
-            text(50, 870, output3, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
-            text(1450, 870, output4, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
             i = i-1;
             drawScene(cinScene,displayBox, borders);
+            if (i == 11 && j == 2) ||(i == 11 && j == 19)
+                if correctPlacement == 1
+                    if (i == 11 && j == 2)
+                        msgbox('Correct!!!');
+                        break
+                    else 
+                        msgbox('Wrong! Try again.');
+                        numTry = numTry + 1;
+                        pause(2);
+                    end
+                else
+                    if (i == 11 && j == 19)
+                        msgbox('Correct!!!');
+                        break
+                    else 
+                        msgbox('Wrong! Try again.');
+                        numTry = numTry + 1;
+                        pause(2);
+                    end
+                end
+            end
         elseif strcmp(key, 'downarrow')
             displayBox(i,j) = 1;
             displayBox(i+1,j) = player_sprite;
-            text(50, 100, output1, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
-            text(1450, 100, output2, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
-            text(50, 870, output3, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
-            text(1450, 870, output4, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
             i = i+1;
             drawScene(cinScene,displayBox, borders);
+             if (i == 11 && j == 2) ||(i == 11 && j == 19)
+                if correctPlacement == 1
+                    if (i == 11 && j == 2)
+                        msgbox('Correct!!!');
+                        break
+                    else 
+                        msgbox('Wrong! Try again.');
+                        numTry = numTry + 1;
+                        pause(2);
+                    end
+                else
+                    if (i == 11 && j == 19)
+                        msgbox('Correct!!!');
+                        break
+                    else 
+                        msgbox('Wrong! Try again.');
+                        numTry = numTry + 1;
+                        pause(2);
+                    end
+                end
+            end
         elseif strcmp(key, 'leftarrow')
             displayBox(i,j) = 1;
             displayBox(i,j-1) = player_sprite;
-            text(50, 100, output1, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
-            text(1450, 100, output2, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
-            text(50, 870, output3, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
-            text(1450, 870, output4, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
             j = j-1;
             drawScene(cinScene,displayBox, borders);
+            if (i == 11 && j == 2) ||(i == 11 && j == 19)
+                if correctPlacement == 1
+                    if (i == 11 && j == 2)
+                        msgbox('Correct!!!');
+                        break
+                    else 
+                        msgbox('Wrong! Try again.');
+                        numTry = numTry + 1;
+                        pause(2);
+                    end
+                else
+                    if (i == 11 && j == 19)
+                        msgbox('Correct!!!');
+                        break
+                    else 
+                        msgbox('Wrong! Try again.');
+                        numTry = numTry + 1;
+                        pause(2);
+                    end
+                end
+            end
         elseif strcmp(key, 'rightarrow')
             displayBox(i,j) = 1;
             displayBox(i,j+1) = player_sprite;
-            text(50, 100, output1, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
-            text(1450, 100, output2, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
-            text(50, 870, output3, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
-            text(1450, 870, output4, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
             j = j+1;
             drawScene(cinScene,displayBox, borders);
+            if (i == 11 && j == 2) ||(i == 11 && j == 19)
+                if correctPlacement == 1
+                    if (i == 11 && j == 2)
+                        msgbox('Correct!!!');
+                        break
+                    else 
+                        msgbox('Wrong! Try again.');
+                        numTry = numTry + 1;
+                        pause(2);
+                    end
+                else
+                    if (i == 11 && j == 19)
+                        msgbox('Correct!!!');
+                        break
+                    else 
+                        msgbox('Wrong! Try again.');
+                        numTry = numTry + 1;
+                        pause(2);
+                    end
+                end
+            end
         end
+    end
+
+    if numTry == 0
+        score = 1;
+    else 
+        score = .5
     end
 
 
