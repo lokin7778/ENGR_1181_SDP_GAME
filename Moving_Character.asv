@@ -2,48 +2,83 @@ function score_moving = Moving_Character(level)
 
     % The protagonist sprite 
     % Create the scene
-    cinScene = simpleGameEngine("custom.png",16,16,5,[217, 135, 41]);
-    displayBox = ones(18,32);
+
+    border_outline_topleft = 130;
+    border_outline_topright = 132;
+    border_outline_bottomleft = 194;
+    border_outline_bottomright = 196;
+    border_outline_left = 162;
+    border_outline_right = 164;
+    border_top_top = 131;
+    border_bottom_bottom = 195;
     
+    cinScene = simpleGameEngine("custom.png",16,16,5,[217, 135, 41]);
+    displayBox = ones(12,20);
+
+    border_top = [border_outline_topleft,repmat(border_top_top,1,18),border_outline_topright];
+    border_middle = [border_outline_left, repmat(1,1,18), border_outline_right];
+
+    question_type = randi([1,2]);
+    [question, output1, output2, output3, output4, correct_english] = ranQuestion(1,10, question_type)
+
     % Sprite locations
-    player_sprite_top = [142, 143];
-    player_sprite_bottom = [174, 175];
-    player_sprite = [player_sprite_top; player_sprite_bottom];
+    player_sprite = 129;
     
     % Start locations
-    i = 12; % x1
-    j = 15; % y1
+    i = 7;
+    j = 10;
     
     displayBox(i,j) = player_sprite;
-    drawScene(cinScene,displayBox);
+    drawScene(cinScene,displayBox,border_top);
     
     % while 1 is an infinite while loop
     while 1
+        text(50, 100, output1, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
+        text(1450, 100, output2, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
+        text(50, 870, output3, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
+        text(1450, 870, output4, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
         key = getKeyboardInput(cinScene);
          
         
         if strcmp(key, 'uparrow')
             displayBox(i,j) = 1;
             displayBox(i-1,j) = player_sprite;
+            text(50, 100, output1, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
+            text(1450, 100, output2, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
+            text(50, 870, output3, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
+            text(1450, 870, output4, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
             i = i-1;
-            drawScene(cinScene,displayBox);
+            drawScene(cinScene,displayBox, border_top);
         elseif strcmp(key, 'downarrow')
             displayBox(i,j) = 1;
             displayBox(i+1,j) = player_sprite;
+            text(50, 100, output1, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
+            text(1450, 100, output2, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
+            text(50, 870, output3, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
+            text(1450, 870, output4, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
             i = i+1;
             drawScene(cinScene,displayBox);
         elseif strcmp(key, 'leftarrow')
             displayBox(i,j) = 1;
             displayBox(i,j-1) = player_sprite;
+            text(50, 100, output1, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
+            text(1450, 100, output2, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
+            text(50, 870, output3, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
+            text(1450, 870, output4, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
             j = j-1;
-            drawScene(cinScene,displayBox);
+            drawScene(cinScene,displayBox, border_top);
         elseif strcmp(key, 'rightarrow')
             displayBox(i,j) = 1;
             displayBox(i,j+1) = player_sprite;
+            text(50, 100, output1, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
+            text(1450, 100, output2, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
+            text(50, 870, output3, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
+            text(1450, 870, output4, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % hiragana
             j = j+1;
-            drawScene(cinScene,displayBox);
+            drawScene(cinScene,displayBox, border_top);
         end
-end
+    end
+
 
 % Note the above doens't consider the boundary conditions and will result
 % in an error if Queen tries to go out of bounds. Think about ways in which
