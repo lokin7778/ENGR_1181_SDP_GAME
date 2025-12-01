@@ -283,7 +283,6 @@ function story_scene = StoryMode(level)
 
     % --- LEVEL 11: THE GAME MAP ---
     elseif level == 11
-
         new_type_information = ['                                                 ';
                  '                                                 ';
                  '     OK Warrior! As you are done with the basic  ';
@@ -300,7 +299,9 @@ function story_scene = StoryMode(level)
                  '                                                 '];
 
                 story_scene = new_type_information;
-                
+        
+    
+            
         % Map Construction
         
         % border_outline_topleft = 130;
