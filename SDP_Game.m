@@ -232,9 +232,8 @@ while (flag)
                                  '                                                              ';
                                  '                     BASIC INSTRUCTIONS                       ';
                                  '                                                              ';
-                                 ' 1. You will be givin 3 types of questions. the first is      ';
-                                 '    multiple choice. The second is fill in the blank. And the ';
-                                 '    third is a moving question.                               ';
+                                 ' 1. You will be givin 2 types of questions. the first is      ';
+                                 '    multiple choice. The second is fill in the blank.         ';
                                  '                                                              ';
                                  ' 2. This mode will continue until you deside to exit. The goal';
                                  '    is to get the highest score. Each time you get a qustion  ';
