@@ -39,7 +39,10 @@ while (flag)
     songLength = length(bgm)/fs;
 
     tic;% starts the timer by getting the system time when the song begins.
-    sound(bgm, fs); % will play the song once
+    
+    musicPlayer = audioplayer(bgm,fs);
+
+    play(musicPlayer);
 
     % variable to see if the player in on the home screen
     homeScreen = true;
@@ -53,7 +56,7 @@ while (flag)
 
         % check for user input
         home_screen_keyboard_input = getKeyboardInput(home_object);
-    
+            
         % if the user chose one of the modes homeScreen will be false
         % meaning the home screen loop will end and the mode the player
         % chose will begin. THe "clear sound" ends the song regardless of
@@ -68,10 +71,10 @@ while (flag)
         % began, it then subracts the toc by the tic which becomes the new
         % toc. If toc is greater than or equal to the length of the sont,
         % the song will play agian and tic will reset. 
-        if toc >= songLength
-            sound(bgm, fs); % will play the song once
-            tic;  % reset timer
-        end
+         if toc >= songLength
+             sound(bgm, fs); % will play the song once
+             tic;  % reset timer
+         end
     end
 
 
