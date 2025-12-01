@@ -1,3 +1,48 @@
 function score_moving = Moving_Character(level)
+    % Queen walks around their kingdom
+% Create the scene
+cinScene = simpleGameEngine("custom.png",16,16,5,[0,0,0]);
+displayBox = ones(18,32);
 
+% Sprite locations
+player_sprite = 129;
+
+% Start locations
+i = 12;
+j = 15;
+
+displayBox(i,j) = player_sprite;
+drawScene(cinScene,displayBox);
+
+% while 1 is an infinite while loop
+while 1
+    key = getKeyboardInput(cinScene);
+     
+    
+    if strcmp(key, 'uparrow')
+        displayBox(i,j) = 1;
+        displayBox(i-1,j) = player_sprite;
+        i = i-1;
+        drawScene(cinScene,displayBox);
+    elseif strcmp(key, 'downarrow')
+        displayBox(i,j) = 1;
+        displayBox(i+1,j) = player_sprite;
+        i = i+1;
+        drawScene(cinScene,displayBox);
+    elseif strcmp(key, 'leftarrow')
+        displayBox(i,j) = 1;
+        displayBox(i,j-1) = player_sprite;
+        j = j-1;
+        drawScene(cinScene,displayBox);
+    elseif strcmp(key, 'rightarrow')
+        displayBox(i,j) = 1;
+        displayBox(i,j+1) = player_sprite;
+        j = j+1;
+        drawScene(cinScene,displayBox);
+    end
+end
+
+% Note the above doens't consider the boundary conditions and will result
+% in an error if Queen tries to go out of bounds. Think about ways in which
+% you can impose limitations on where a sprite can move in a window 
 end
