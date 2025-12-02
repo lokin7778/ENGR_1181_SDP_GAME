@@ -181,6 +181,7 @@ function score_moving = Moving_Character(correctHiragana, wrongHiragana, correct
 
         elseif strcmp( key, 'escape' )
             msgbox('EXITED THE BATTLE!')
+            score_moving = -1;
             break
         end
        
