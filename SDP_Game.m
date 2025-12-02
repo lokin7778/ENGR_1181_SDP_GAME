@@ -189,9 +189,7 @@ while (flag)
                 score_moving = Moving_Character('け', 'こ', 'KE');
                 pause(3);
                 score = score + score_moving;
-
-                
-
+       
             end
             
             % --- HANDLE INPUT ---
