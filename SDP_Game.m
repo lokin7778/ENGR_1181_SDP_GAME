@@ -86,7 +86,7 @@ while (flag)
         %                        STORY MODE
         % =================================================================
         
-        level = 0;
+        level = 11;
         score = 0; % Initialize Score
         
         % Loop stops after Level 10 (The last Quiz)
@@ -158,6 +158,40 @@ while (flag)
                 h1 = text(260, 120, 'け', fontStyle{:});
                 h2 = text(260, 167, 'こ', fontStyle{:});
                 hText = [hText, h1, h2];
+            elseif level == 11 % Moving Character mode
+                current_scene = StoryMode(level);
+            
+                % Draw the background
+                drawScene(home_object, current_scene);
+                getMouseInput(home_object);
+                
+                % question 1
+                score_moving = Moving_Character('い', 'あ', 'i');
+                pause(3);
+                score = score + score_moving;
+
+                % question 2
+                score_moving = Moving_Character('う', 'え', 'U');
+                pause(3);
+                score = score + score_moving;
+
+                % question 3
+                score_moving = Moving_Character('お', 'か', 'O');
+                pause(3);
+                score = score + score_moving;
+                
+                % question 4
+                score_moving = Moving_Character('き', 'く', 'KI');
+                pause(3);
+                score = score + score_moving;
+
+                % question 5
+                score_moving = Moving_Character('け', 'こ', 'KE');
+                pause(3);
+                score = score + score_moving;
+
+                
+
             end
             
             % --- HANDLE INPUT ---

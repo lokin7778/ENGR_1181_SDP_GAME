@@ -1,4 +1,5 @@
-function score_moving = Moving_Character(level, correctHiragana, wrongHiragana, correctEnglish)
+function score_moving = Moving_Character(correctHiragana, wrongHiragana, correctEnglish)
+
 
 
     % The protagonist sprite 
@@ -62,8 +63,8 @@ function score_moving = Moving_Character(level, correctHiragana, wrongHiragana, 
             % correct
             text(100, 845, wrongHiragana, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % left corner
         end
-            text(100, 125, '        Quickly move to hiragana "  "  in order to defete the demon', 'FontSize', 25, 'Color',[0.8 0.8 0.8]);
-            text(750, 125, correctEnglish, 'FontSize', 25, 'Color',[0.8 0.8 0.8]);
+            text(100, 125, '        Quickly move to hiragana "    "  in order to defete the demon', 'FontSize', 25, 'Color',[0.8 0.8 0.8]);
+            text(755, 125, correctEnglish, 'FontSize', 25, 'Color',[0.8 0.8 0.8]);
 
 
 
@@ -178,9 +179,9 @@ function score_moving = Moving_Character(level, correctHiragana, wrongHiragana, 
     end
 
     if numTry == 0
-        score = 1;
+        score_moving = 1;
     else 
-        score = .5
+        score_moving = .5
     end
 
 

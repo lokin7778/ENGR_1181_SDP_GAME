@@ -25,10 +25,13 @@ home_screen_scene = [home_screen_wordsR1; home_screen_wordsR2; ...
     home_screen_wordsR6; home_screen_wordsR7; home_screen_wordsR8];
 
 % --- MAIN LOOP ---
-% allows the game to run infinitly until the player compleatly ex
+% allows the game to run infinitly until the player compleatly exits out of
+% the game. 
 flag = true;
 while (flag)
     
+%------------------------- HOME SCREEN CODE ------------------------------%
+
     % reads in the audio file
     [bgm, fs] = audioread('02. Beginning of the Journey.mp3');
 
@@ -36,7 +39,10 @@ while (flag)
     songLength = length(bgm)/fs;
 
     tic;% starts the timer by getting the system time when the song begins.
-    sound(bgm, fs); % will play the song once
+    
+    musicPlayer = audioplayer(bgm,fs);
+
+    play(musicPlayer);
 
     % variable to see if the player in on the home screen
     homeScreen = true;
@@ -50,7 +56,7 @@ while (flag)
 
         % check for user input
         home_screen_keyboard_input = getKeyboardInput(home_object);
-    
+            
         % if the user chose one of the modes homeScreen will be false
         % meaning the home screen loop will end and the mode the player
         % chose will begin. THe "clear sound" ends the song regardless of
@@ -65,11 +71,14 @@ while (flag)
         % began, it then subracts the toc by the tic which becomes the new
         % toc. If toc is greater than or equal to the length of the sont,
         % the song will play agian and tic will reset. 
-        if toc >= songLength
-            sound(bgm, fs); % will play the song once
-            tic;  % reset timer
-        end
+         if toc >= songLength
+             sound(bgm, fs); % will play the song once
+             tic;  % reset timer
+         end
     end
+
+
+%-------------------------- DIFFRENT MODES -------------------------------%
 
     if (isequal(home_screen_keyboard_input,'1'))
         
@@ -77,11 +86,11 @@ while (flag)
         %                        STORY MODE
         % =================================================================
         
-        level = 0;
+        level = 11;
         score = 0; % Initialize Score
         
         % Loop stops after Level 10 (The last Quiz)
-        while level <= 10
+        while level <= 11
             
             % Load the scene text
             current_scene = StoryMode(level);
@@ -149,6 +158,38 @@ while (flag)
                 h1 = text(260, 120, 'け', fontStyle{:});
                 h2 = text(260, 167, 'こ', fontStyle{:});
                 hText = [hText, h1, h2];
+            elseif level == 11 % Moving Character mode
+                current_scene = StoryMode(level);
+            
+                % Draw the background
+                drawScene(home_object, current_scene);
+                getMouseInput(home_object);
+                
+                % question 1
+                score_moving = Moving_Character('い', 'あ', 'i');
+                pause(3);
+                score = score + score_moving;
+
+                % question 2
+                score_moving = Moving_Character('う', 'え', 'U');
+                pause(3);
+                score = score + score_moving;
+
+                % question 3
+                score_moving = Moving_Character('お', 'か', 'O');
+                pause(3);
+                score = score + score_moving;
+                
+                % question 4
+                score_moving = Moving_Character('き', 'く', 'KI');
+                pause(3);
+                score = score + score_moving;
+
+                % question 5
+                score_moving = Moving_Character('け', 'こ', 'KE');
+                pause(3);
+                score = score + score_moving;
+
             end
             
             % --- HANDLE INPUT ---
@@ -223,9 +264,8 @@ while (flag)
                                  '                                                              ';
                                  '                     BASIC INSTRUCTIONS                       ';
                                  '                                                              ';
-                                 ' 1. You will be givin 3 types of questions. the first is      ';
-                                 '    multiple choice. The second is fill in the blank. And the ';
-                                 '    third is a moving question.                               ';
+                                 ' 1. You will be givin 2 types of questions. the first is      ';
+                                 '    multiple choice. The second is fill in the blank.         ';
                                  '                                                              ';
                                  ' 2. This mode will continue until you deside to exit. The goal';
                                  '    is to get the highest score. Each time you get a qustion  ';
