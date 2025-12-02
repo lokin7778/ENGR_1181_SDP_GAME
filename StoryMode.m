@@ -300,7 +300,7 @@ function story_scene = StoryMode(level)
 
                 story_scene = new_type_information;
         
-    
+                
             
         % Map Construction
         
