@@ -49,6 +49,9 @@ function score_moving = Moving_Character(correctHiragana, wrongHiragana, correct
     displayBox(i,j) = player_sprite;
     drawScene(cinScene,displayBox,borders);
 
+    text(1400,80,'EXIT','FontSize',20,'Color',[0.8,0.8,0.8],'FontWeight','bold')
+
+
     % while 1 is an infinite while loop
     while 1
 
@@ -67,10 +70,10 @@ function score_moving = Moving_Character(correctHiragana, wrongHiragana, correct
             text(755, 125, correctEnglish, 'FontSize', 20, 'Color',[0.8 0.8 0.8]);
 
 
-
-        key = getKeyboardInput(cinScene);
-         
         
+        key = getKeyboardInput(cinScene);
+        [r,c] = getMouseInput(cinScene);
+
         if strcmp(key, 'uparrow')
             displayBox(i,j) = 1;
             displayBox(i-1,j) = player_sprite;
@@ -176,7 +179,11 @@ function score_moving = Moving_Character(correctHiragana, wrongHiragana, correct
                 end
             end
         end
-    end
+        
+        if ( r>=1 && r<=2 ) && ( c>=18 && c<=19 )
+            msgbox("You have exited out of the Story Mode!")
+            break;
+        end
 
     if numTry == 0
         score_moving = 1;
