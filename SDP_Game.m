@@ -158,6 +158,7 @@ while (flag)
                 h1 = text(260, 120, 'け', fontStyle{:});
                 h2 = text(260, 167, 'こ', fontStyle{:});
                 hText = [hText, h1, h2];
+
             elseif level == 11 % Moving Character mode
                 current_scene = StoryMode(level);
             
