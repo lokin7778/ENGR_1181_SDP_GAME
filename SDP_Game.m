@@ -95,7 +95,7 @@ while (flag)
         %                        STORY MODE
         % =================================================================
         
-        level = 1;
+        level = 11;
         score = 0; % Initialize Score
         story_exit = false; % flag to check if user pressed ESC to exit to home
         
@@ -277,7 +277,7 @@ while (flag)
         else
             % End of Story Mode
             msgbox(['Story Mode Complete! Final Score: ' num2str(score)]);
-            flag = false; % Exit Main Menu completely (or remove this to loop back to home)
+            pause(2);
         end
 
 

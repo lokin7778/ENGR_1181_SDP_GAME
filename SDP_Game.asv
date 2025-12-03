@@ -2,17 +2,24 @@ clear
 clc
 
 % --- GAME SETUP ---
-sSize = 16; 
-zFactor = 1; 
-BGC = [217, 135, 41]; 
+sSize = 16; % Sprite size based on the actual size of the sprite sheet.
 
-% Create the game engine object
+zFactor = 1; % Zoom factor, based on how big you want to the displayed 
+% images to be. 
+
+BGC = [217, 135, 41]; % Background color, RBG values. ()
+
+% Creats a simpleGameEngine object with the parameters sSize, zFactor, BCG,
+% and the custom.png
 home_object = simpleGameEngine('custom.png', sSize, sSize, zFactor, BGC);
 
-% --- HOME SCREEN TEXT ---
+% creates the vectors which hold the text that will be displayed on the
+% screen.
 home_screen_wordsR1 = ['      Kana no Densetsu     '];
+
 home_screen_wordsR2 = [129, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 133];
+
 home_screen_wordsR3 = ['     Please choose mode    '];
 home_screen_wordsR4 = ['                           '];
 home_screen_wordsR5 = ['       1. Story Mode       '];
@@ -20,6 +27,7 @@ home_screen_wordsR6 = ['    2. Infinite Hiragana   '];
 home_screen_wordsR7 = ['                           '];
 home_screen_wordsR8 = ['    Please click 1 or 2    '];
 
+% Creates a vector of the different text-holder vecotrs above
 home_screen_scene = [home_screen_wordsR1; home_screen_wordsR2; ...
     home_screen_wordsR3; home_screen_wordsR4; home_screen_wordsR5;...
     home_screen_wordsR6; home_screen_wordsR7; home_screen_wordsR8];
@@ -63,6 +71,7 @@ while (flag)
         % if it is finished or not.
         if isequal(home_screen_keyboard_input, '1') || isequal(home_screen_keyboard_input, '2')
             homeScreen = false;  % stop home screen loop
+            stop(musicPlayer);   % stop the audio object
             clear sound
         end
     
@@ -72,7 +81,7 @@ while (flag)
         % toc. If toc is greater than or equal to the length of the sont,
         % the song will play agian and tic will reset. 
          if toc >= songLength
-             sound(bgm, fs); % will play the song once
+             play(musicPlayer); % play using the object
              tic;  % reset timer
          end
     end
@@ -88,77 +97,139 @@ while (flag)
         
         level = 11;
         score = 0; % Initialize Score
+        story_exit = false; % flag to check if user pressed ESC to exit to home
         
-        % Loop stops after Level 10 (The last Quiz)
+        % Loop stops after Level 11
         while level <= 11
             
-            % Load the scene text
-            current_scene = StoryMode(level);
-            
-            % Draw the background
-            drawScene(home_object, current_scene);
-            
-            % Initialize text handle array
-            hText = []; 
-            
-            % --- DISPLAY SCORE (ONLY FROM LEVEL 1 ONWARDS) ---
-            if level > 0
-                text(20, 30, ['Score: ' num2str(score)], 'FontSize', 12, 'Color',[0.8 0.8 0.8]);
-            end
-            
-            fontStyle = {'FontSize', 16, 'Color',[0.8 0.8 0.8]};
-            
-            % --- DRAW CHARACTERS (Your Coordinates) ---
-            if level == 1 % Lesson 1: A and I
-                h1 = text(220, 50, 'あ', fontStyle{:}); 
-                h2 = text(220, 167, 'い', fontStyle{:}); 
-                hText = [h1, h2];
+            % --- LESSONS & QUIZZES (Levels 1 - 10) ---
+            if level < 11
+                % Load the scene text
+                current_scene = StoryMode(level);
                 
-            elseif level == 2 % Quiz 1 (Answer: A)
-                h1 = text(260, 120, 'あ', fontStyle{:}); 
-                h2 = text(260, 165, 'い', fontStyle{:}); 
-                hText = [h1, h2];
+                % Draw the background
+                drawScene(home_object, current_scene);
                 
-            elseif level == 3 % Lesson 2: U and E
-                h1 = text(220, 50, 'う', fontStyle{:});
-                h2 = text(220, 167, 'え', fontStyle{:});
-                hText = [hText, h1, h2];
+                % Initialize text handle array
+                hText = []; 
                 
-            elseif level == 4 % Quiz 2 (Answer: E)
-                h1 = text(260, 120, 'う', fontStyle{:});
-                h2 = text(260, 165, 'え', fontStyle{:});
-                hText = [hText, h1, h2];
+                % --- DISPLAY SCORE (ONLY FROM LEVEL 1 ONWARDS) ---
+                if level > 0
+                    text(20, 30, ['Score: ' num2str(score)], 'FontSize', 12, 'Color',[0.8 0.8 0.8]);
+                end
                 
-            elseif level == 5 % Lesson 3: O and KA
-                h1 = text(220, 50, 'お', fontStyle{:});
-                h2 = text(220, 167, 'か', fontStyle{:});
-                hText = [hText, h1, h2];
+                fontStyle = {'FontSize', 16, 'Color',[0.8 0.8 0.8]};
                 
-            elseif level == 6 % Quiz 3 (Answer: KA)
-                h1 = text(260, 120, 'お', fontStyle{:});
-                h2 = text(260, 167, 'か', fontStyle{:});
-                hText = [hText, h1, h2];
+                % --- DRAW CHARACTERS ---
+                if level == 1 % Lesson 1: A and I
+                    h1 = text(220, 50, 'あ', fontStyle{:}); 
+                    h2 = text(220, 167, 'い', fontStyle{:}); 
+                    hText = [h1, h2];
+                    
+                elseif level == 2 % Quiz 1 (Answer: A)
+                    h1 = text(260, 120, 'あ', fontStyle{:}); 
+                    h2 = text(260, 165, 'い', fontStyle{:}); 
+                    hText = [h1, h2];
+                    
+                elseif level == 3 % Lesson 2: U and E
+                    h1 = text(220, 50, 'う', fontStyle{:});
+                    h2 = text(220, 167, 'え', fontStyle{:});
+                    hText = [h1, h2];
+                    
+                elseif level == 4 % Quiz 2 (Answer: E)
+                    h1 = text(260, 120, 'う', fontStyle{:});
+                    h2 = text(260, 165, 'え', fontStyle{:});
+                    hText = [h1, h2];
+                    
+                elseif level == 5 % Lesson 3: O and KA
+                    h1 = text(220, 50, 'お', fontStyle{:});
+                    h2 = text(220, 167, 'か', fontStyle{:});
+                    hText = [hText, h1, h2];
+                    
+                elseif level == 6 % Quiz 3 (Answer: KA)
+                    h1 = text(260, 120, 'お', fontStyle{:});
+                    h2 = text(260, 167, 'か', fontStyle{:});
+                    hText = [hText, h1, h2];
+                    
+                elseif level == 7 % Lesson 4: KI and KU
+                    h1 = text(220, 50, 'き', fontStyle{:});
+                    h2 = text(220, 155, 'く', fontStyle{:});
+                    hText = [hText, h1, h2];
+                    
+                elseif level == 8 % Quiz 4 (Answer: KU)
+                    h1 = text(260, 120, 'き', fontStyle{:});
+                    h2 = text(260, 167, 'く', fontStyle{:});
+                    hText = [hText, h1, h2];
+                    
+                elseif level == 9 % Lesson 5: KE and KO
+                    h1 = text(220, 55, 'け', fontStyle{:});
+                    h2 = text(220, 160, 'こ', fontStyle{:});
+                    hText = [hText, h1, h2];
+                    
+                elseif level == 10 % Quiz 5 (Answer: KO)
+                    h1 = text(260, 120, 'け', fontStyle{:});
+                    h2 = text(260, 167, 'こ', fontStyle{:});
+                    hText = [hText, h1, h2];
+                end
                 
-            elseif level == 7 % Lesson 4: KI and KU
-                h1 = text(220, 50, 'き', fontStyle{:});
-                h2 = text(220, 155, 'く', fontStyle{:});
-                hText = [hText, h1, h2];
+                % --- HANDLE INPUT ---
                 
-            elseif level == 8 % Quiz 4 (Answer: KU)
-                h1 = text(260, 120, 'き', fontStyle{:});
-                h2 = text(260, 167, 'く', fontStyle{:});
-                hText = [hText, h1, h2];
+                if mod(level, 2) == 1 || level == 0
+                    % Odd Levels (Lessons) & Level 0: Just Click to continue
+                    getMouseInput(home_object);
+                    level = level + 1;
+                    
+                else
+                    % Even Levels (Quizzes): Logic for Score & Damage
+                    validKey = false;
+                    firstAttempt = true; % Reset attempt tracker for this question
+                    
+                    while ~validKey
+                        key = getKeyboardInput(home_object);
+                        
+                        if key == '1' || key == '2'
+                            
+                            % Check which answer is correct based on Level
+                            isCorrect = false;
+                            if level == 2 && key == '1', isCorrect = true; end
+                            if level == 4 && key == '2', isCorrect = true; end
+                            if level == 6 && key == '2', isCorrect = true; end
+                            if level == 8 && key == '2', isCorrect = true; end
+                            if level == 10 && key == '2', isCorrect = true; end
+                            
+                            if isCorrect
+                                % --- SCORING LOGIC ---
+                                if firstAttempt
+                                    score = score + 1;
+                                    msgbox(['Correct! +1 Point. Total: ' num2str(score)]);
+                                    pause(2);
+                                else
+                                    score = score + 0.5;
+                                    msgbox(['Correct! +0.5 Points. Total: ' num2str(score)]);
+                                    pause(2);
+                                end
+                                
+                                validKey = true; % Break loop to go to next level
+                            else
+                                % Wrong Answer
+                                msgbox('Wrong! You take damage. Try again.');
+                                pause(2);
+                                firstAttempt = false; % Next guess is worth less
+                            end
+                        end
+                    end
+                    
+                    pause(1); 
+                    level = level + 1;
+                end
                 
-            elseif level == 9 % Lesson 5: KE and KO
-                h1 = text(220, 55, 'け', fontStyle{:});
-                h2 = text(220, 160, 'こ', fontStyle{:});
-                hText = [hText, h1, h2];
-                
-            elseif level == 10 % Quiz 5 (Answer: KO)
-                h1 = text(260, 120, 'け', fontStyle{:});
-                h2 = text(260, 167, 'こ', fontStyle{:});
-                hText = [hText, h1, h2];
-            elseif level == 11 % Moving Character mode
+                % Cleanup Text
+                if ~isempty(hText)
+                    delete(hText);
+                end
+
+            % --- LEVEL 11: MOVING CHARACTER BATTLE (STORY MODE ONLY) ---
+            elseif level == 11
                 current_scene = StoryMode(level);
             
                 % Draw the background
@@ -167,91 +238,49 @@ while (flag)
                 
                 % question 1
                 score_moving = Moving_Character('い', 'あ', 'i');
-                pause(3);
+                if score_moving == -1, story_exit = true; break; end % check for ESC
                 score = score + score_moving;
+                pause(2);
 
                 % question 2
                 score_moving = Moving_Character('う', 'え', 'U');
-                pause(3);
+                if score_moving == -1, story_exit = true; break; end % check for ESC
                 score = score + score_moving;
+                pause(2);
 
                 % question 3
                 score_moving = Moving_Character('お', 'か', 'O');
-                pause(3);
+                if score_moving == -1, story_exit = true; break; end % check for ESC
                 score = score + score_moving;
+                pause(2);
                 
                 % question 4
                 score_moving = Moving_Character('き', 'く', 'KI');
-                pause(3);
+                if score_moving == -1, story_exit = true; break; end % check for ESC
                 score = score + score_moving;
+                pause(2);
 
                 % question 5
                 score_moving = Moving_Character('け', 'こ', 'KE');
-                pause(3);
+                if score_moving == -1, story_exit = true; break; end % check for ESC
                 score = score + score_moving;
-
-            end
-            
-            % --- HANDLE INPUT ---
-            
-            if mod(level, 2) == 1 || level == 0
-                % Odd Levels (Lessons) & Level 0: Just Click to continue
-                getMouseInput(home_object);
-                level = level + 1;
-                
-            else
-                % Even Levels (Quizzes): Logic for Score & Damage
-                validKey = false;
-                firstAttempt = true; % Reset attempt tracker for this question
-                
-                while ~validKey
-                    key = getKeyboardInput(home_object);
-                    
-                    if key == '1' || key == '2'
-                        
-                        % Check which answer is correct based on Level
-                        isCorrect = false;
-                        if level == 2 && key == '1', isCorrect = true; end
-                        if level == 4 && key == '2', isCorrect = true; end
-                        if level == 6 && key == '2', isCorrect = true; end
-                        if level == 8 && key == '2', isCorrect = true; end
-                        if level == 10 && key == '2', isCorrect = true; end
-                        
-                        if isCorrect
-                            % --- SCORING LOGIC ---
-                            if firstAttempt
-                                score = score + 1;
-                                msgbox(['Correct! +1 Point. Total: ' num2str(score)]);
-                                pause(2);
-                            else
-                                score = score + 0.5;
-                                msgbox(['Correct! +0.5 Points. Total: ' num2str(score)]);
-                                pause(2);
-                            end
-                            
-                            validKey = true; % Break loop to go to next level
-                        else
-                            % Wrong Answer
-                            msgbox('Wrong! You take damage. Try again.');
-                            pause(2);
-                            firstAttempt = false; % Next guess is worth less
-                        end
-                    end
-                end
-                
-                pause(1); 
-                level = level + 1;
-            end
-            
-            % Cleanup Text
-            if ~isempty(hText)
-                delete(hText);
+                pause(2);
+       
+                level = level + 1; % Finish Story Mode
             end
         end
         
-        % End of Story Mode
-        msgbox(['Story Mode Complete! Final Score: ' num2str(score)]);
-        flag = false; % Exit Main Menu
+        if story_exit
+            % User pressed ESC to exit Story Mode. 
+            % 'flag' remains true, so it will loop back to Home Screen.
+            clf; 
+        else
+            % End of Story Mode
+            msgbox(['Story Mode Complete! Final Score: ' num2str(score)]);
+            pause(2);
+         
+        end
+
 
     elseif (isequal(home_screen_keyboard_input,'2'))
         
@@ -259,6 +288,7 @@ while (flag)
         %                     INFINITE HIRAGANA MODE
         % =================================================================
 
+        % the instructions for the infinite hiragana mode
         infinite_instructions = ['                                                              ';
                                  '         WELCOME TO THE INFINITE HIRAGANA MODE WARRIOR        ';
                                  '                                                              ';
@@ -278,11 +308,21 @@ while (flag)
                                  '                             PLAY                             ';
                                  '                                                              '];
                                  
+        % output the instructions
         drawScene(home_object, infinite_instructions);
+
+        % move on when the user clicks play
         [r_INFinstructions, c_INFinstructions] = getMouseInput(home_object);
 
+
+        % variable that will be used to know when to exit the mode
         exit_in_mode = 0; 
+
+        % variable that will keep track of the player's score
         score = 0;
+
+        % variable that will be used to keep track of the
+        % number of trys.
         numTry = 0;
         
         while exit_in_mode == 0
@@ -291,9 +331,10 @@ while (flag)
 
             clf;
 
-            question_type = randi([1, 2]); % Randomly choose type 1 or 2
+            % Randomly choose type 1 or 2 (Moving Character removed from Infinite)
+            question_type = randi([1, 2]); 
 
-            % call the ranQuestion.m function
+            % call the ranQuestion.m function.
             [question, output1, output2, output3, output4, correct_english] = ranQuestion(1,10, question_type);
     
             % multiple choice
@@ -374,8 +415,6 @@ while (flag)
 
             % fill in the blank
             elseif question_type == 2 
-                %clf;
-                
                 % call the ranQuestion.m function with a ristriction on the
                 % outputs.
                 [question, output1, output2, output3, output4, correct_english] = ranQuestion(1,5, question_type);
@@ -418,16 +457,12 @@ while (flag)
                      end
                 end
 
-                numTry = numTry + 1; % increse number of trys
-
                 if exit_in_mode == 0
-                    %if they input the right answer they will be told so.
                     msgbox('Correct!!!');
     
-                    % if they got the question right on their fist try, their
-                    % score will go up by 1. if they took more than one try
-                    % their score will go up by .5.
-                    if numTry == 1
+                    % if they got the question right on their fist try...
+                    % (Logic note: numTry starts at 0 for Fill-in-Blank in this loop)
+                    if numTry == 0 
                         score = score + 1; 
                     else
                         score = score + .5; 
