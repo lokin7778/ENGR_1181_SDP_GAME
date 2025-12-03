@@ -66,11 +66,7 @@ function score_moving = Moving_Character(correctHiragana, wrongHiragana, correct
             % correct
             text(100, 845, wrongHiragana, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % left corner
         end
-            text(400,200,'PRESS escape (esc) 2 times to quit the battle','FontSize',20,'Color',[0.8,0.8,0.8])
-
-            text(100, 125, '        Quickly move to hiragana "    "  in order to defeat the demon', 'FontSize', 20, 'Color',[0.8 0.8 0.8]);
-            text(755, 125, correctEnglish, 'FontSize', 20, 'Color',[0.8 0.8 0.8]);
-
+            text(400,200,'PRESS escape (esc) 2 times to quit the battle','FontSize',20,'Color',[0.8,0.8,0.8]);
             text(100, 125, '        Quickly move to hiragana "     "  in order to defeat the demon', 'FontSize', 20, 'Color',[0.8 0.8 0.8]);
             text(625, 125, correctEnglish, 'FontSize', 20, 'Color',[0.8 0.8 0.8]);
         
