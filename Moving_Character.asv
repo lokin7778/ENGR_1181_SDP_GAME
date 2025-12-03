@@ -70,8 +70,9 @@ function score_moving = Moving_Character(correctHiragana, wrongHiragana, correct
             text(400,200,'PRESS escape (esc) 2 times to quit the battle','FontSize',20,'Color',[0.8,0.8,0.8])
             text(100, 125, '        Quickly move to hiragana "    "  in order to defeat the demon', 'FontSize', 20, 'Color',[0.8 0.8 0.8]);
             text(755, 125, correctEnglish, 'FontSize', 20, 'Color',[0.8 0.8 0.8]);
-        
+            text(50,7)
 
+        
         key = getKeyboardInput(cinScene)
 
         if strcmp(key, 'uparrow')
