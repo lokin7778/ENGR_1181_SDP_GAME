@@ -3,6 +3,7 @@ function score_moving = Moving_Character(correctHiragana, wrongHiragana, correct
     % The protagonist sprite 
     % Create the scene
 
+    % the sprites for the boarders of the question
     border_outline_topleft = 130;
     border_outline_topright = 132;
     border_outline_bottomleft = 194;
@@ -12,9 +13,13 @@ function score_moving = Moving_Character(correctHiragana, wrongHiragana, correct
     border_top_top = 131;
     border_bottom_bottom = 195;
     
+    % Creats a simpleGameEngine object with the parameters sSize, zFactor, BCG,
+    % and the custom.png
     cinScene = simpleGameEngine("custom.png",16,16,5,[217, 135, 41]);
     displayBox = ones(12,20);
 
+    % creates the vectors which hold the border that will be displayed on the
+    % screen.
     border_top = [border_outline_topleft,repmat(border_top_top,1,18),border_outline_topright];
     border_middle1 = [border_outline_left, repmat(1,1,18), border_outline_right];
     border_middle2 = [border_outline_left, repmat(1,1,18), border_outline_right];
@@ -32,8 +37,10 @@ function score_moving = Moving_Character(correctHiragana, wrongHiragana, correct
         border_middle5; border_middle6; border_middle7; border_middle8; border_middle9; border_middle10; border_bottom];
 
     
+    % randomizes the placement of the correct option
     correctPlacement = randi([1,2]);
 
+    % used to track the number of tries
     numTry = 0;
 
     % Sprite locations
@@ -45,14 +52,20 @@ function score_moving = Moving_Character(correctHiragana, wrongHiragana, correct
     i = 7;
     j = 10;
     
+    % display the player's sprite in the display box scene.
     displayBox(i,j) = player_sprite;
+
+    % draw the scene
     drawScene(cinScene,displayBox,borders);
 
+    % text for the exit
     text(1400,80,'EXIT','FontSize',20,'Color',[0.8,0.8,0.8],'FontWeight','bold')
 
     % while 1 is an infinite while loop
     while 1
 
+        % display the hiragana in the correct place depending on where the
+        % correct option should be.
         if correctPlacement == 1
             % correct
             text(100, 845, correctHiragana, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % left corner
@@ -64,17 +77,23 @@ function score_moving = Moving_Character(correctHiragana, wrongHiragana, correct
             % correct
             text(100, 845, wrongHiragana, 'FontSize', 25, 'Color',[0.8 0.8 0.8]); % left corner
         end
+
+            % display the question
             text(400,200,'PRESS escape (esc) 2 times to quit the battle','FontSize',20,'Color',[0.8,0.8,0.8]);
             text(100, 125, '        Quickly move to hiragana "     "  in order to defeat the demon', 'FontSize', 20, 'Color',[0.8 0.8 0.8]);
             text(625, 125, correctEnglish, 'FontSize', 20, 'Color',[0.8 0.8 0.8]);
         
+        % get the user's input
         key = getKeyboardInput(cinScene)
 
+        % move the user's sprite depending on where they want to move
         if strcmp(key, 'uparrow')
             displayBox(i,j) = 1;
             displayBox(i-1,j) = player_sprite;
             i = i-1;
             drawScene(cinScene,displayBox, borders);
+
+            % check to see if the user moved to the correct answer
             if (i == 11 && j == 2) ||(i == 11 && j == 19)
                 if correctPlacement == 1
                     if (i == 11 && j == 2)
@@ -102,6 +121,8 @@ function score_moving = Moving_Character(correctHiragana, wrongHiragana, correct
             displayBox(i+1,j) = player_sprite;
             i = i+1;
             drawScene(cinScene,displayBox, borders);
+
+            % check to see if the user moved to the correct answer
              if (i == 11 && j == 2) ||(i == 11 && j == 19)
                 if correctPlacement == 1
                     if (i == 11 && j == 2)
@@ -129,6 +150,8 @@ function score_moving = Moving_Character(correctHiragana, wrongHiragana, correct
             displayBox(i,j-1) = player_sprite;
             j = j-1;
             drawScene(cinScene,displayBox, borders);
+
+            % check to see if the user moved to the correct answer
             if (i == 11 && j == 2) ||(i == 11 && j == 19)
                 if correctPlacement == 1
                     if (i == 11 && j == 2)
@@ -156,6 +179,8 @@ function score_moving = Moving_Character(correctHiragana, wrongHiragana, correct
             displayBox(i,j+1) = player_sprite;
             j = j+1;
             drawScene(cinScene,displayBox, borders);
+
+            % check to see if the user moved to the correct answer
             if (i == 11 && j == 2) ||(i == 11 && j == 19)
                 if correctPlacement == 1
                     if (i == 11 && j == 2)
@@ -178,6 +203,8 @@ function score_moving = Moving_Character(correctHiragana, wrongHiragana, correct
                 end
             end
 
+        % if you press the escape key twice, you exit out of the Moving
+        % Character mode and go back to the home screen
         elseif strcmp( key, 'escape' )
             msgbox('EXITING THE BATTLE!')
             pause(2)
@@ -185,6 +212,7 @@ function score_moving = Moving_Character(correctHiragana, wrongHiragana, correct
             break
         end
        
+    % increase score_moving based on the number of tries 
     if numTry == 0
         score_moving = 1;
     else 
