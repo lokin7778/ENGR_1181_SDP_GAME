@@ -1,6 +1,5 @@
 function score_moving = Moving_Character(correctHiragana, wrongHiragana, correctEnglish)
 
-
     % The protagonist sprite 
     % Create the scene
 
@@ -37,7 +36,6 @@ function score_moving = Moving_Character(correctHiragana, wrongHiragana, correct
 
     numTry = 0;
 
-
     % Sprite locations
     player_sprite = 129;
     demon_sprite = 133;
@@ -70,7 +68,6 @@ function score_moving = Moving_Character(correctHiragana, wrongHiragana, correct
             text(100, 125, '        Quickly move to hiragana "     "  in order to defeat the demon', 'FontSize', 20, 'Color',[0.8 0.8 0.8]);
             text(625, 125, correctEnglish, 'FontSize', 20, 'Color',[0.8 0.8 0.8]);
         
-
         key = getKeyboardInput(cinScene)
 
         if strcmp(key, 'uparrow')
@@ -99,6 +96,7 @@ function score_moving = Moving_Character(correctHiragana, wrongHiragana, correct
                     end
                 end
             end
+
         elseif strcmp(key, 'downarrow')
             displayBox(i,j) = 1;
             displayBox(i+1,j) = player_sprite;
@@ -124,7 +122,8 @@ function score_moving = Moving_Character(correctHiragana, wrongHiragana, correct
                         pause(2);
                     end
                 end
-            end
+             end
+
         elseif strcmp(key, 'leftarrow')
             displayBox(i,j) = 1;
             displayBox(i,j-1) = player_sprite;
@@ -151,6 +150,7 @@ function score_moving = Moving_Character(correctHiragana, wrongHiragana, correct
                     end
                 end
             end
+
         elseif strcmp(key, 'rightarrow')
             displayBox(i,j) = 1;
             displayBox(i,j+1) = player_sprite;
@@ -185,15 +185,10 @@ function score_moving = Moving_Character(correctHiragana, wrongHiragana, correct
             break
         end
        
-
     if numTry == 0
         score_moving = 1;
     else 
         score_moving = .5
     end
 
-
-% Note the above doens't consider the boundary conditions and will result
-% in an error if Queen tries to go out of bounds. Think about ways in which
-% you can impose limitations on where a sprite can move in a window 
     end

@@ -1,7 +1,6 @@
 function story_scene = StoryMode(level)
+
     % STORY MODE SCENES
-    % Returns the text/sprite matrix for each stage of the game.
-    %
     % Level Structure:
     % 0: Instructions
     % 1: Lesson 1 (A, I)  -> 2: Quiz 1
@@ -9,7 +8,7 @@ function story_scene = StoryMode(level)
     % 5: Lesson 3 (O, KA) -> 6: Quiz 3
     % 7: Lesson 4 (KI, KU)-> 8: Quiz 4
     % 9: Lesson 5 (KE, KO)-> 10: Quiz 5
-    % 11: The Game Map
+    % 11: Moving Character BATTLE INTRO
 
     % --- LEVEL 0: INSTRUCTIONS ---
     if level == 0 
@@ -117,9 +116,9 @@ function story_scene = StoryMode(level)
                  '  "What is the hiragana equivalent of "E" ?"      ';
                  '                                                  ';
                  '                                                  ';
-                 '    OPTION 1:        (U)                          ';
+                 '    OPTION 1:                                     ';
                  '                                                  ';
-                 '    OPTION 2:        (E)                          ';
+                 '    OPTION 2:                                     ';
                  '                                                  ';
                  '                                                  ';
                  '   (Press 1 or 2 on your keyboard to attack!)     ';
@@ -162,9 +161,9 @@ function story_scene = StoryMode(level)
                  '  "What is the Hiragana equivalent of "KA" ?"     ';
                  '                                                  ';
                  '                                                  ';
-                 '    OPTION 1:         (O)                         ';
+                 '    OPTION 1:                                     ';
                  '                                                  ';
-                 '    OPTION 2:         (KA)                        ';
+                 '    OPTION 2:                                     ';
                  '                                                  ';
                  '                                                  ';
                  '   (Press 1 or 2 on your keyboard to attack!)     ';
@@ -205,9 +204,9 @@ function story_scene = StoryMode(level)
                  '  "What is the Hiragana equivalent of "KU" ?"     ';
                  '                                                  ';
                  '                                                  ';
-                 '    OPTION 1:         (KI)                        ';
+                 '    OPTION 1:                                     ';
                  '                                                  ';
-                 '    OPTION 2:         (KU)                        ';
+                 '    OPTION 2:                                     ';
                  '                                                  ';
                  '                                                  ';
                  '   (Press 1 or 2 on your keyboard to attack!)     ';
@@ -250,9 +249,9 @@ function story_scene = StoryMode(level)
                  '  "What is the Hiragana equivalent of "KO" ?"     ';
                  '                                                  ';
                  '                                                  ';
-                 '    OPTION 1:         (KE)                        ';
+                 '    OPTION 1:                                     ';
                  '                                                  ';
-                 '    OPTION 2:         (KO)                        ';
+                 '    OPTION 2:                                     ';
                  '                                                  ';
                  '                                                  ';
                  '   (Press 1 or 2 on your keyboard to attack!)     ';
@@ -280,31 +279,7 @@ function story_scene = StoryMode(level)
                  '                                                 '];
 
                 story_scene = new_type_information;
-        
-                
-            
-        % Map Construction
-        
-        % border_outline_topleft = 130;
-        % border_outline_topright = 132;
-        % border_outline_bottomleft = 194;
-        % border_outline_bottomright = 196;
-        % border_outline_left = 162;
-        % border_outline_right = 164;
-        % 
-        % % Build the Top Border
-        % story_scene_top = [border_outline_topleft, repmat(131, 1, 30), border_outline_topright];
-        % 
-        % % Build the Middle Rows (Empty area with side borders)
-        % story_scene_middle_temp = [border_outline_left, repmat(4, 1, 30), border_outline_right];
-        % 
-        % % Build the Bottom Border
-        % story_scene_bottom = [border_outline_bottomleft, repmat(195, 1, 30), border_outline_bottomright];
-        % 
-        % % Combine into one map matrix
-        % % We stack the top, 10 middle rows, and the bottom.
-        % story_scene = [story_scene_top;
-        %                repmat(story_scene_middle_temp, 10, 1);
-        %                story_scene_bottom];
+  
     end
+
 end
