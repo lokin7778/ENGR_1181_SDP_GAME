@@ -22,7 +22,7 @@ home_screen_wordsR2 = [129, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
 
 home_screen_wordsR3 = ['     Please choose mode    '];
 home_screen_wordsR4 = ['                           '];
-home_screen_wordsR5 = ['       1. Story Mode       '];
+home_screen_wordsR5 = ['      1. Lesson Mode       '];
 home_screen_wordsR6 = ['    2. Infinite Hiragana   '];
 home_screen_wordsR7 = ['                           '];
 home_screen_wordsR8 = ['    Please click 1 or 2    '];
@@ -92,10 +92,10 @@ while (flag)
     if (isequal(home_screen_keyboard_input,'1'))
         
         % =================================================================
-        %                        STORY MODE
+        %                        LESSON MODE
         % =================================================================
         
-        level = 1;
+        level = 11;
         score = 0; % Initialize Score
         story_exit = false; % flag to check if user pressed ESC to exit to home
         
