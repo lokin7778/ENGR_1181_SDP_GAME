@@ -41,6 +41,8 @@ function score_moving = Moving_Character(correctHiragana, wrongHiragana, correct
 
     % Sprite locations
     player_sprite = 129;
+    demon_sprite = 133;
+    fire_sprite = 134;
     
     % Start locations
     i = 7;
