@@ -277,7 +277,7 @@ while (flag)
         else
             % End of Story Mode
             msgbox(['Story Mode Complete! Final Score: ' num2str(score)]);
-            flag = false; % Exit Main Menu completely (or remove this to loop back to home)
+            pause(2);
         end
 
 
